@@ -1,0 +1,43 @@
+afficher message à l'utilisateur avec demande saisie:
+
+Creer une fonction Frais de port 
+arguments :
+Pays  de livraison
+Montant commande :
+
+si FR ou DE
+	si commande inférieure ou égale à 100 frais sont égaux à 10% 
+            supérieurà 100 et inférieur ou égale à 1000  frais sont égaux 5 % 
+            Si supérieur à  1000 frais sont égaux 1%
+         finsi 
+ Sinon           
+ SI CH            
+       si commande inférieure ou égale à 100 frais sont égaux à 5% 
+            supérieurà 100 et inférieur ou égale à 1000  frais sont égaux 2 % 
+            Si supérieur à  1000 frais sont égaux 0%  
+        finsi   
+sinon
+Si AU  
+ si commande inférieure ou égale à 100 frais sont égaux à 8% 
+            supérieurà 100 et inférieur ou égale à 1000  frais sont égaux 6 % 
+            Si supérieur à  1000 frais sont égaux 4% 
+    finsi
+sinon
+   si commande inférieure ou égale à 100 frais sont égaux à 10% 
+            supérieurà 100 et inférieur ou égale à 1000  frais sont égaux 8 % 
+            Si supérieur à  1000 frais sont égaux 6%  
+    
+ finsi            
+      retour un pourcentage une valeur Numérique      
+
+ si pays= FR and Montant <= 100 alors 10% 
+ 
+entrée le montant :
+entrée Pays
+
+Appel la fonction frais de port donne %
+Pourcentage = FRaisDeport(pays, montant) 
+
+calcul montant = entrée * (Pourcentage ) / 100
+
+Afficher le résultat
