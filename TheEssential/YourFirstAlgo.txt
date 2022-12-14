@@ -1,0 +1,16 @@
+# Installer -linux sur une machine.  à partir d'une clef USB
+## Préparation
+1. choisir la distribution
+2. télécharger binaire
+1. écrire sur la clef USB
+
+## installation
+1. inséerer la clef USB sur la machine
+2. démarrer
+3. si écran windows
+  1. arreter la machine
+  1. redemarrer en affichant le bios
+  3. changer les boot Option
+  1. reprendre à 2.
+1. si écran installation
+2. suivre instruction
