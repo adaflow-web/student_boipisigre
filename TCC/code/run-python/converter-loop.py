@@ -3,11 +3,7 @@ def convert(celciustemp):
     faren = (( celciustemp*9)/5)+32
     return faren
 
-celcius=0
-print(celcius,"°C est égale à ",convert(celcius), "°F")
+tcelcius={0,21,100}
 
-celcius=21
-print(celcius,"°C est égale à ",convert(celcius), "°F")
-
-celcius=100
-print(celcius,"°C est égale à ",convert(celcius), "°F")
+for celcius in tcelcius :
+    print(celcius,"°C est égale à ",convert(celcius), "°F")
