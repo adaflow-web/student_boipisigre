@@ -1,24 +1,13 @@
-a_number = "3"
-a_string = " Hello"
+var anumber = "3"
+var astring = " Hello"
 
-result= a_number  + a_string
+var result = anumber  + astring
 
-print(result)
+console.log(result)
 
-number_one = 3
-number_two = 2
-result = number_one + number_two
+var bnumber = 5
+var bstring = "3"
 
-a_string = " Hello"
+var result = bnumber  + bstring
 
-message = "result" + a_string
-print(message)
-
-message = str(result) + a_string
-print(message)
-
-apples = "3"
-oranges = 2
-
-result = int(apples) + oranges
-print(result)
+console.log(result)
