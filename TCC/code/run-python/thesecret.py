@@ -8,13 +8,16 @@ while i < 6 :
 
     if (lesecret == entré) :
         print ("Bravo")
-        break
+        #break
+        i=6
     else :
-        print("désollé ce n'est pas  " + entré)
+        print("Désolé ce n'est pas  " + entré)
         print("essai " + str(i) )
     i=i+1
 
 if i == 6 :
     print("relancer le programme")
 
+if i < 6 or i> 6 :
+    print("c'est fini")
 exit
