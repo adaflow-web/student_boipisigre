@@ -1,5 +1,5 @@
 def greet(name, age):
-    message = "Your name is" + name + " and you are " + int(age) + " years old."
+    message = "Your name is " + name + " and you are " + age + " years old."
     return message
 
 name = input("Enter your name: ")
