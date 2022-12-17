@@ -4,7 +4,8 @@ function add(a, b) {
 }
 
 var message = add(10, 2);
-console.log(Message);
+// M --> m
+console.log(message);
 
 message = add(3, 2);
 console.log(message);
