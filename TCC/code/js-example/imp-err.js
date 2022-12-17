@@ -7,7 +7,7 @@ console.log(a); // log
 a = a * 2 + 1;
 // at this point, a == 21
 console.log(a); // log
-a = a + 3 / 2;
+a = (a + 3) / 2;
 // at this point, a == 12
 console.log(a); // log
 a = a - 11;
