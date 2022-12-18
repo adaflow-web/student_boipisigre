@@ -15,6 +15,6 @@ var favdish = ["Salade", "Gratin Dauphinois", "Raclette"];
 favdish.push("Poulet");
 favdish.sort();
 
-for (var i = 1; i < favdish.length; i = i + 1) {
+for (var i = 0; i < favdish.length; i = i + 1) {
   console.log(favdish[i]); // OK mais pas bien
 }
