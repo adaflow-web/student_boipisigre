@@ -11,4 +11,4 @@ var card = {prenom: "pierre",
         email: "pierre@proton.mail"
 }
 
-console.log("nom :" + card["nom"]+" Tel: "+card["phone"])
+console.log("nom :" + card["nom"]+" Tel: "+card.phone)
