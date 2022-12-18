@@ -6,4 +6,4 @@ card = {"prenom": "pierre",
         "email": "pierre@proton.mail"
 }
 
-print("nom :" + card[nom]+" Tel: "+card[phone])
+print("nom :" + card["nom"]+" Tel: "+card["phone"])
