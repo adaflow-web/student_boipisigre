@@ -1,3 +1,10 @@
 nombre = input("Type a number: ")
-result = int(nombre) + 1
+
+try:
+    result = int(nombre) + 1
+    pass
+except Exception as e:
+    print(" pas un nombre")
+    quit()
+
 print("The result is " + str(result))
