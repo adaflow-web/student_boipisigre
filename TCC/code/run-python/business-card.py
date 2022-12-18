@@ -7,3 +7,7 @@ card = {"prenom": "pierre",
 }
 
 print("nom :" + card["nom"]+" Tel: "+card["phone"])
+
+name="nom"
+tel="phone"
+print("nom :" + card[name]+" Tel: "+card[tel])
