@@ -21,8 +21,8 @@ print(Songs)
 Songs.append("La montagne")
 
 #4
-print(len(Songs))
-
+print("There are " + str(len(Songs)) + " songs in the array.")
+print(Songs)
 #5
 Songs.pop(2)
 
@@ -31,4 +31,4 @@ for chanson in Songs:
     print(chanson)
 
 #7
-print(len(Songs))
+print("There are " + str(len(Songs)) + " songs in the array.")
