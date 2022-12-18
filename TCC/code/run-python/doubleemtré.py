@@ -8,3 +8,8 @@ print(employes[0][0])
 print(employes[0])
 print(employes[1][0])
 print(employes[2][0])
+
+print(len(employes))
+print(employes)
+employes.sort()
+print(employes)
