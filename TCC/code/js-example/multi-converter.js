@@ -12,6 +12,7 @@ function convertdolar(dolar){
   var chf = dolar *  0.9299
         return chf
       }
+// var vNan=  NaN ;
 
 var ok =window.prompt("Voulez vous convertir - O/n") ;
 while (ok == "O" || ok == "o") {
@@ -19,6 +20,12 @@ while (ok == "O" || ok == "o") {
 var conv =window.prompt("convertion Celsius/Dollar/Galon - C/D/G") ;
 var value =window.prompt("Quel valeur souhaitez convertir - nombre") ;
 
+// var saisie=Number(value);
+
+// console.log(Number(value)+ " " + vNan ) ;
+
+
+if ( isNaN(value) != true) {
 switch(conv) {
   case "C":
   case "c":
@@ -38,6 +45,9 @@ console.log(value +  " $ est égale à "+convertdolar(value) + "chf");
   console.log("Désolé nous n'avons pas de convertisseur")
     // code block
   }
+  }
+  else { console.log("votre saisie n'est pas un nombre")}
+
 var ok =window.prompt("Voulez vous continuer à convertir - O/n") ;
 }
 console.log("bye-bye");
