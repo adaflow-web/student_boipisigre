@@ -7,22 +7,23 @@ gagné à False
 '''
 
 secret = random.randint(1, 100)
-gagné = False
+#print (secret)
 essai = 0
 
-while (!gagné) :
-    entré = input("donné un nombre en tre 1 et 100 : ")
-    nombre = int(entré)
-
+while ( 1 == 1) :
+    entré = input("saisir un nombre entre 1 et 100 : ")
+        #print (secret, nombre)
     try:
-        essai++
+        nombre = int(entré)
+        essai = essai +1
         if nombre == secret :
-            gagné = True
-            
+            break
+
         if nombre < secret:
-            print("nombre plus petit")
+            print("le nombre plus petit que le secret")
         else:
-            print("nombre plus grand")
+            print("le nombre plus grand que le secret")
+
 
     except Exception as e:
         print("ce n'est pas un nombre, faite attention")
