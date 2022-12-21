@@ -26,7 +26,7 @@ var value =window.prompt("Quel valeur souhaitez convertir - nombre") ;
 
 
 if ( isNaN(value) != true && value != "" ) {
-switch(conv) {
+switch(conv) { // remplace des if multiples.
   case "C":
   case "c":
     console.log(value +  "°C est égale à "+convertcel(value) + "°F");
