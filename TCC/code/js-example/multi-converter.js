@@ -25,7 +25,7 @@ var value =window.prompt("Quel valeur souhaitez convertir - nombre") ;
 // console.log(Number(value)+ " " + vNan ) ;
 
 
-if ( isNaN(value) != true) {
+if ( isNaN(value) != true && value != "" ) {
 switch(conv) {
   case "C":
   case "c":
