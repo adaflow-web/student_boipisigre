@@ -9,11 +9,11 @@ h2 {
   text-emphasis-style: circle;
 }
 
-#page1{
-  color:red;
+.navigation{
+  text-align: right;
 }
 
-#page2{
+.menu-lien{
   color: blue
 }
 
