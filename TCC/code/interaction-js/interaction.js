@@ -10,7 +10,12 @@ const Saisie = document.getElementById('Saisie') ;
 const Action = document.getElementById("bu") ;
 
 function remplir(){
-  Letexte.innerHTML = Saisie.value;
+  Letexte.innerHTML = Saisie.value+"<br>";
+  Saisie.value ='un autre texte'
 }
 
 Action.addEventListener("click", remplir);
+Action.addEventListener("dblclick", function(){
+  document.getElementById("Letexte").innerHTML = "........";
+}
+)
