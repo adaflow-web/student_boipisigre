@@ -21,8 +21,8 @@ function remplir(){
 function addtext(){
   const Newajout=document.createElement("p") ;
   Newajout.innerHTML = Saisie2.value +"<br>";
-  Newajout.className="deco";
-  
+  Newajout.className ="deco";
+
   Lajout.appendChild(Newajout);
   Saisie2.value ='le texte NOUVEAU';
 }
