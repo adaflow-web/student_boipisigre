@@ -1,0 +1,22 @@
+h1 {
+ text-align: center;
+ color: white;
+ background-color: black;
+}
+
+h2 {
+  color: green;
+  text-emphasis-style: circle;
+}
+
+.navigation{
+  text-align: right;
+}
+
+.menu-lien{
+  color: blue
+}
+
+#adress{
+  text-align: center;
+}
