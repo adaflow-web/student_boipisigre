@@ -1,0 +1,52 @@
+.deco {
+  font-size: 20px;
+  font-family: Arial;
+  color: white ;
+  background-color: black;
+  text-align: center;
+}
+
+#ajout{
+  background-color: black;
+}
+#Letexte {
+  font-size: 24px;
+}
+#bu1 {
+  color: Blue;
+}
+
+#bu2 {
+  color: Green;
+}
+
+#bu3 {
+  color: Red;
+}
+
+h1 {
+ text-align: center;
+ color: white;
+ background-color: black;
+}
+
+h2 {
+  color: green;
+  text-emphasis-style: circle;
+}
+p {
+  background-color: white;
+  text-align: center;
+  color: black;
+}
+.navigation{
+  text-align: right;
+}
+
+.menu-lien{
+  color: blue
+}
+
+#adress{
+  text-align: center;
+}
