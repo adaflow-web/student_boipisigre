@@ -24,6 +24,17 @@ def homepage():
 def about():
     return get_html("about.html")
 
+@app.route("/contacts")
+def contact():
+    contactpage = get_html("contacts.html")
+    mycontacts=get_contact()
+    mycontacts.sort()
+
+    change_value=""
+    for contact in mycontacts :
+        change_value=change_value + "<p>" + contact + "</p>"
+    return contactpage.replace("$$MesContacts$$",change_value)
+
 @app.route("/rechercher")
 def rechercher():
     # return "résultat de ma recherche"
@@ -31,10 +42,13 @@ def rechercher():
     change_value=" "
     contactpage = get_html("contacts.html")
     mycontacts=get_contact()
-    try:
-        resultat=mycontacts.index(texte)
-        change_value=change_value + "<p>" + mycontacts[resultat] + "</p>"
-    except:
+    trouvé=False
+    for uncontact in mycontacts:
+        if (texte.upper() in uncontact.upper()):
+            change_value=change_value + "<p>" + uncontact + "</p>"
+            trouvé=True
+
+    if not(trouvé):
         change_value= change_value + "<p> contact non trouvé</p>"
 
     return contactpage.replace("$$MesContacts$$",change_value)
