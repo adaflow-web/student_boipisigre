@@ -4,16 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Parametres</title>
+  <title>Recherche de notes</title>
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
- <a class="menu-lien" href="/about">about</a>
- <a class="menu-lien" href="/contacts">Tous mes contacts</a>
-<h1> Gestion de paramêtres </h1>
-<p> Saisir votre recherche </p>
-<p> </p>
-<center>
+<center> <p> <a class="menu-lien" href="/">Home</a>  <a class="menu-lien" href="/notes">Lister les notes</a>
+  <a class="menu-lien" href="/addnotes">Ajouter une note</a> <a class="menu-lien" href="/chercher">Rechercher une note</a>
+  <a class="menu-lien" href="/about">about</a> </p> </center>
+<h1> Rechercher une note </h1>
+
+<center><p> Saisir votre recherche </p>
+
 <form action="/rechercher" method="get">
   <input type="text" id="message" class="box" name="query">
   <input type="submit" value="Rechercher!"></p>

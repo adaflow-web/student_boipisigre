@@ -10,11 +10,11 @@ def get_html(page):
     return content
 
 def get_notes():
-    contactdb=open("static/lesnotes.txt")
-    contact = contactdb.read()
-    contactdb.close()
-    contacts=contact.split("\n")
-    return  contacts
+    notesdb=open("static/lesnotes.txt")
+    note = notesdb.read()
+    notesdb.close()
+    notes=note.splitlines()
+    return  notes
 
 @app.route("/")
 def homepage():
@@ -28,11 +28,15 @@ def about():
 def notes():
     notepage = get_html("notes")
     lesnotes=get_notes()
-
     change_value=""
     for note in lesnotes :
-        change_value=change_value + "<p>" + note + "</p>"
+        champs=note.split("€")
+        change_value=change_value + "<p>" + champs[0] + "</p> <p>" + champs[1] + "</p>"
     return notepage.replace("$$MesNotes$$",change_value)
+
+@app.route("/addnotes")
+def addnotes():
+    return get_html("ajoutnote")
 
 @app.route("/chercher")
 def chercher():

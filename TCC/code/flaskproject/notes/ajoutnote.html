@@ -4,21 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Parametres</title>
+  <title>Ajout de notes</title>
     <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-  <p> <a class="menu-lien" href="/">Home</a> </p>
-  <p> <a class="menu-lien" href="/about">about</a> </p>
-  <p> <a class="menu-lien" href="/notes">Lister les notes</a> </p>
-  <p> <a class="menu-lien" href="/addnotes">Ajouter une note</a> </p>
-  <p> <a class="menu-lien" href="/searchnotes">Rechercher une note</a> </p>
+  <center> <p> <a class="menu-lien" href="/">Home</a>  <a class="menu-lien" href="/notes">Lister les notes</a>
+  <a class="menu-lien" href="/addnotes">Ajouter une note</a> <a class="menu-lien" href="/chercher">Rechercher une note</a>
+  <a class="menu-lien" href="/about">about</a> </p> </center>
 
 <h1> Gestion de paramêtres </h1>
-<p> Saisir votre recherche </p>
-<p> </p>
-<center>
+<center><p> Saisissez votre note</p>
+
 <form action="/ajoutnote" method="get">
+  <label for="titre">Titre:</label>
+  <input type="text" id="message" class="box" name="ajout"></br>
+  <label for="corps">corps:</label>
   <input type="text" id="message" class="box" name="ajout">
   <input type="submit" value="sauver"></p>
 </form>
