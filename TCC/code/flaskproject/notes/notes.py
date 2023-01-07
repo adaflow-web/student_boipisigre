@@ -48,14 +48,18 @@ def rechercher():
     txt_recherche =flask.request.args.get("query")
     change_value=" "
     notepage = get_html("notes")
-    lesnotes=get_notes()
-    trouvé=False
-    for unenote in lesnotes:
-        if (txt_recherche.upper() in unenote.upper()):
-            change_value=change_value + "<p>" + unenote + "</p>"
-            trouvé=True
+    if (txt_recherche != ""):
+        lesnotes=get_notes()
+        trouvé=False
+        for unenote in lesnotes:
+            champs=unenote.split("€")
+            if (txt_recherche.upper() in champs[0].upper()):
+                change_value=change_value + "<p>" + champs[0] + "</p> <p>" + champs[1] + "</p>"
+                trouvé=True
 
-    if not(trouvé):
-        change_value= change_value + "<p> note non trouvée</p>"
+        if not(trouvé):
+            change_value= change_value + "<p> note non trouvée</p>"
+    else:
+        change_value= "<p> recherche non valide</p>"
 
-    return contactpage.replace("$$MesNotes$$",change_value)
+    return notepage.replace("$$MesNotes$$",change_value)
