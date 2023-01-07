@@ -16,6 +16,12 @@ def get_notes():
     notes=note.splitlines()
     return  notes
 
+def add_notes(texte):
+    notesdb=open("static/lesnotes.txt","a")
+    notesdb.write(texte)
+    notesdb.close()
+    return
+
 @app.route("/")
 def homepage():
     return get_html("index")
@@ -37,6 +43,19 @@ def notes():
 @app.route("/addnotes")
 def addnotes():
     return get_html("ajoutnote")
+
+@app.route("/ajoutnote")
+def ajoutnote():
+    txt_titre =flask.request.args.get("titre")
+    txt_corps = flask.request.args.get("corps")
+    txt_corps = txt_corps.replace("\n"," ")
+    note = txt_titre + " € " + txt_corps + "\n"
+    add_notes(note)
+    notepage = get_html("notes")
+    message = " notes "+ txt_titre + " sauvée "
+
+    return  notepage.replace("$$MesNotes$$",message)
+
 
 @app.route("/chercher")
 def chercher():
