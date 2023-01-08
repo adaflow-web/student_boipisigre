@@ -38,6 +38,18 @@ p {
   background-color: white;
   color: black;
 }
+p.corps {
+  width: 50em;
+  border: 1px solid #000000;
+  word-wrap: break-word;
+}
+p.titre {
+  width: 15em;
+  border: 2px solid #000000;
+  word-wrap: break-word;
+  color: Blue;
+  font-size: 16px;
+}
 .navigation{
   text-align: right;
 }
