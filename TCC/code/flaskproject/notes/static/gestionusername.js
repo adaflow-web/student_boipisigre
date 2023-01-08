@@ -3,18 +3,15 @@ function lirenom() {
 //  console.log(localStorage.length) ;
 // if (localStorage.length> 0) {
 if (localStorage.length >0) {
-for (let key=0 ; key < localStorage.length; key++){
-     var tache=localStorage.getItem(key);
-     const Newajout=document.createElement("p") ;
-     Newajout.innerHTML = tache;
-     Newajout.className ="deco";
-     Lajout.appendChild(Newajout);
+  var key="NomUtilisateur" ;
+  var personne =localStorage.getItem(key);
+  document.getElementById("name").innerHTML = "Saluton " + personne + "! kiel vi fartas, hodiaũ?";
    }
- }
 else {
-  let person = prompt("Please enter your name", "Harry Potter");
-  if (person != null) {
-    document.getElementById("name").innerHTML = "Hello " + person + "! How are you today?";
+  let personne = prompt("Bonvolu skribas vian nomon", "Zamenov");
+  if (personne != null) {
+    document.getElementById("name").innerHTML = "Saluton " + personne + "! kiel vi fartas, hodiaũ?";
+    localStorage.setItem("NomUtilisateur",personne);
   }
 }
 }

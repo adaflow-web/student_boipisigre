@@ -4,3 +4,5 @@ note test 2 € The second step of building this app is to build the back end. I
 test 3 € Cette note est une note de test dont la longueur est ...
 test 4 € sans linefeed
 test 5  € To create a new file in Python, use the open() method, with one of the following parameters:  "x" - Create - will create a file, returns an error if the file exist  "a" - Append - will create a file if the specified file does not exist  "w" - Write - will create a file if the specified file does not exist
+la derniere € 
+Elle s'en fout € Madame ne veut rien savoir
