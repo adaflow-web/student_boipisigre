@@ -12,3 +12,7 @@ la structure de la table est :
 Conséquence les fonction d'accédant aux données doivent être modifié:
 * add_notes(texte) **la première version doit être modifié** pour prendre deux parametre au lieu de un
 * get_notes()  
+
+* les codes
+  * champs=note.split("€") --> champs=note[0].split("€")
+  * champs=unenote.split("€") --> champs=unenote[0].split("€")
