@@ -1,4 +1,5 @@
 import flask
+import sqlite3
 from flask import Flask
 
 app = Flask("notes")
@@ -10,22 +11,39 @@ def get_html(page):
     return content
 
 def get_notes():
-    notesdb=open("static/lesnotes.txt")
-    note = notesdb.read()
-    notesdb.close()
-    notes=note.splitlines()
+    DBCon = sqlite3.connect('static/db/lesnotes.db')
+
+    print("Connection established ..........")
+    # print("=================================")
+    # Ouvrir un curseur
+    ltable = DBCon.cursor()
+    notes = ltable.execute("select titre ||' € '|| corps from notes").fetchall()
+    # print(notes)
+    ltable.close()
+    DBCon.close()
+    # print("=================================")
     return  notes
 
-def add_notes(texte):
-    notesdb=open("static/lesnotes.txt","a")
-    notesdb.write(texte)
-    notesdb.close()
+def add_notes(col1,col2):
+    DBCon = sqlite3.connect('static/db/lesnotes.db')
+
+    print("Connection established ..........")
+    # print("=================================")
+    # Ouvrir un curseur
+    updtable = DBCon.cursor()
+    data = [col1,col2]
+    updtable.execute("insert into notes (titre,corps) values (?, ?)", data)
+    DBCon.commit()
+    print ("sauver")
+    updtable.close()
+    DBCon.close()
     return
 
 def affiche_note(listenotes):
     change_value=""
     for note in listenotes :
-        champs=note.split("€")
+        # print(note[0])
+        champs=note[0].split("€")
         change_value=change_value + "<p class='titre'>" + champs[0] + "</p> <p class='corps'>" + champs[1] + "</p>"
     return change_value
 
@@ -58,7 +76,7 @@ def ajoutnote():
     txt_corps = flask.request.args.get("corps")
     txt_corps = txt_corps.replace("\n"," ")
     note = txt_titre + " € " + txt_corps + "\n"
-    add_notes(note)
+    add_notes(txt_titre,txt_corps)
     notepage = get_html("notes")
     message = " notes "+ txt_titre + " sauvée "
 
@@ -79,7 +97,7 @@ def rechercher():
         lesnotes=get_notes()
         trouvé=False
         for unenote in lesnotes:
-            champs=unenote.split("€")
+            champs=unenote[0].split("€")
             if (txt_recherche.upper() in champs[0].upper()):
                 change_value=change_value + "<p class='titre'>" + champs[0] + "</p> <p class='corps'>" + champs[1] + "</p>"
                 trouvé=True
