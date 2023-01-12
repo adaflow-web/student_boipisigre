@@ -47,11 +47,7 @@ def notes():
 
 @app.route("/addnotes")
 def addnotes():
-    return get_html("ajoutnote")
-
-app.route("/menu")
-def menu():
-    return get_html("menu")
+    return render_template("ajoutnote.html")
 
 
 @app.route("/ajoutnote")
@@ -61,7 +57,7 @@ def ajoutnote():
     txt_corps = txt_corps.replace("\n"," ")
     note = txt_titre + " € " + txt_corps + "\n"
     add_notes(note)
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     message = " notes "+ txt_titre + " sauvée "
 
     return  notepage.replace("$$MesNotes$$",message)
@@ -69,14 +65,14 @@ def ajoutnote():
 
 @app.route("/chercher")
 def chercher():
-    return get_html("recherche")
+    return render_template("recherche.html")
 
 @app.route("/rechercher")
 def rechercher():
     # return "résultat de ma recherche"
-    txt_recherche =flask.request.args.get("query")
+    txt_recherche =Flask.request.args.get("query")
     change_value=" "
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     if (txt_recherche != ""):
         lesnotes=get_notes()
         trouvé=False

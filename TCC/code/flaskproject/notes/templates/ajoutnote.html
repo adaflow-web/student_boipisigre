@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Ajout de notes</title>
-    <link rel="stylesheet" href="static/style.css">
-</head>
-<body>
-  <center>
-    <p>
-      <a class="menu-lien" href="/">Home</a>  <a class="menu-lien" href="/notes">Lister</a>
-  <a class="menu-lien" href="/addnotes">Ajouter</a> <a class="menu-lien" href="/chercher">Rechercher</a>
-  <a class="menu-lien" href="/about">About me</a>
-  </p>
-  </center>
-<h1> Ajout d'une note </h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Ajout d'une note  {% endblock %}</h1>
+    
 <center><p> Saisissez votre note</p>
 
 <form action="/ajoutnote" method="get">
@@ -27,7 +14,4 @@
 </form>
 </center>
 
-<!-- <script src="static/todolist.js"></script> -->
-
-</body>
-</html>
+{% endblock %}
