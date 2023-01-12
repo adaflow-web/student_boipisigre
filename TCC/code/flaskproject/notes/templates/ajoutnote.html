@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Ajout d'une note  {% endblock %}</h1>
-    
+<body>
+    <h1>{% block title %} Ajout {% endblock %} d'une note  </h1>
+
 <center><p> Saisissez votre note</p>
 
 <form action="/ajoutnote" method="get">
@@ -13,5 +14,5 @@
   <input type="submit" value="sauver"></p>
 </form>
 </center>
-
+</body>
 {% endblock %}
