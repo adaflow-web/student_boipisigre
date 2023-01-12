@@ -1,5 +1,7 @@
-import flask
-from flask import Flask
+
+import sqlite3
+from flask import Flask, render_template, request, url_for, flash, redirect
+from werkzeug.exceptions import abort
 
 app = Flask("notes")
 
@@ -31,11 +33,11 @@ def affiche_note(listenotes):
 
 @app.route("/")
 def homepage():
-    return get_html("index")
+    return render_template('index.html')
 
 @app.route("/about")
 def about():
-    return get_html("about")
+    return render_template("about.html")
 
 @app.route("/notes")
 def notes():
