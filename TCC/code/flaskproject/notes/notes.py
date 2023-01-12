@@ -41,7 +41,7 @@ def about():
 
 @app.route("/notes")
 def notes():
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     lesnotes=get_notes()
     return notepage.replace("$$MesNotes$$",affiche_note(lesnotes))
 
