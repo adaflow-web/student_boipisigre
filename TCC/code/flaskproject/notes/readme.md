@@ -3,4 +3,4 @@
 
 ## Amélioration
 * Creation d'une branche sqlite pour migrer de fichier txt vers db ssqlite
-* creation d'une branche jinja pour améliorer le html
+* creation d'une branche jinja pour améliorer le html et utiliser les templates

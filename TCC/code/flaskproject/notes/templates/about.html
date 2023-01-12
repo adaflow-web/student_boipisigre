@@ -1,29 +1,8 @@
-<!DOCTYPE html>
-<html lang="fr">
+<{% extends 'base.html' %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" type="text/css" href="static/style.css"
--->
-<title>Pierre</title>
-</head>
-<header>
+{% block content %}
+    <h1>{% block title %} Pierre  {% endblock %}</h1>
 
-</header>
-
-<body>
-
-  <center>
-    <p>
-      <a class="menu-lien" href="/">Home</a>  <a class="menu-lien" href="/notes">Lister</a>
-  <a class="menu-lien" href="/addnotes">Ajouter</a> <a class="menu-lien" href="/chercher">Rechercher</a>
-  <a class="menu-lien" href="/about">About me</a>
-  </p>
-  </center>
-
-<h1> Pierre </h1>
 <h2> Qui suis-je ? </h2>
 </br>
 <p>Il est toujours difficile de se définir ou décire </p>
@@ -57,16 +36,4 @@ Donnez moi votre email :
 <input type="text" id="lname" name="lname" value="Doe"><br><br>
   <input type="submit" value="Enregister">
 
-</body>
-<footer> <!-- contact information is commonly placed in the footer tag -->
-<address id=adress>
-    Pierre<br/>
-
-    1004 Lausanne<br/>
-    Switzerland
-  </address>
-
-</footer>
-
-
-</html>
+{% endblock %}
