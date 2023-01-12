@@ -52,8 +52,8 @@ def addnotes():
 
 @app.route("/ajoutnote")
 def ajoutnote():
-    txt_titre =flask.request.args.get("titre")
-    txt_corps = flask.request.args.get("corps")
+    txt_titre =request.args.get("titre")
+    txt_corps = request.args.get("corps")
     txt_corps = txt_corps.replace("\n"," ")
     note = txt_titre + " € " + txt_corps + "\n"
     add_notes(note)
@@ -70,7 +70,7 @@ def chercher():
 @app.route("/rechercher")
 def rechercher():
     # return "résultat de ma recherche"
-    txt_recherche =Flask.request.args.get("query")
+    txt_recherche =request.args.get("query")
     change_value=" "
     notepage = render_template("notes.html")
     if (txt_recherche != ""):
