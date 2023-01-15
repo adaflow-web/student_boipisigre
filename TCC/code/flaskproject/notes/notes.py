@@ -2,8 +2,10 @@
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
+from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask("notes")
+app.config['SECRET_KEY'] = 'Pierre'
 
 def get_html(page):
     file=open(page+".html")
@@ -67,16 +69,22 @@ def addnotes():
     return render_template("ajoutnote.html")
 
 
-@app.route("/ajoutnote")
+@app.route("/ajoutnote", methods=('GET', 'POST'))
 def ajoutnote():
-    txt_titre =request.args.get("titre")
-    txt_corps = request.args.get("corps")
-    txt_corps = txt_corps.replace("\n"," ")
-    note = txt_titre + " € " + txt_corps + "\n"
-    add_notes(txt_titre,txt_corps)
-    notepage = render_template("notes.html")
-    message = " notes "+ txt_titre + " sauvée "
+    message = ""
+    if request.method == 'POST':
+        data = ImmutableMultiDict(request.form)
+        txt_titre = data.get('titre')
+        txt_corps = data.get("corps")
+        if not txt_titre :
+            flash('Titolo esta postulata!')
+        else:
+            txt_corps = txt_corps.replace("\n"," ")
+            note = txt_titre + " € " + txt_corps + "\n"
+            add_notes(txt_titre,txt_corps)
+            message = " notes "+ txt_titre + " sauvée "
 
+    notepage = render_template("notes.html")
     return  notepage.replace("$$MesNotes$$",message)
 
 

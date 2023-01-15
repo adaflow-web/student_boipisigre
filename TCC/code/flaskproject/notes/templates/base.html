@@ -17,18 +17,8 @@
   </head>
 
 <br/>
+
 {% include 'menu.html' %}
-<!--
-<center>
-<p>
-<a class="menu-lien" href="/">Home</a>
-<a class="menu-lien" href="/notes">Lister</a>
-<a class="menu-lien" href="/addnotes">Ajouter</a>
-<a class="menu-lien" href="/chercher">Rechercher</a>
-<a class="menu-lien" href="/about">About me</a>
-</p>
-</center>
--->
 
 <div class="container">
         {% for message in get_flashed_messages() %}
