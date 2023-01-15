@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+<h1> {% block title %} Rechercher {% endblock %} une note </h1>
+
+<center><p> Saisir votre recherche </p>
+
+<form action="/rechercher" method="get">
+  <input type="text" id="message" class="box" name="query">
+  <input type="submit" value="Rechercher!"></p>
+</form>
+</center>
+</body>
+{% endblock %}

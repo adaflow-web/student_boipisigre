@@ -1,6 +1,7 @@
-import flask
+
 import sqlite3
-from flask import Flask
+from flask import Flask, render_template, request, url_for, flash, redirect
+from werkzeug.exceptions import abort
 
 app = Flask("notes")
 
@@ -49,35 +50,31 @@ def affiche_note(listenotes):
 
 @app.route("/")
 def homepage():
-    return get_html("index")
+    return render_template('index.html')
 
 @app.route("/about")
 def about():
-    return get_html("about")
+    return render_template("about.html")
 
 @app.route("/notes")
 def notes():
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     lesnotes=get_notes()
     return notepage.replace("$$MesNotes$$",affiche_note(lesnotes))
 
 @app.route("/addnotes")
 def addnotes():
-    return get_html("ajoutnote")
-
-app.route("/menu")
-def menu():
-    return get_html("menu")
+    return render_template("ajoutnote.html")
 
 
 @app.route("/ajoutnote")
 def ajoutnote():
-    txt_titre =flask.request.args.get("titre")
-    txt_corps = flask.request.args.get("corps")
+    txt_titre =request.args.get("titre")
+    txt_corps = request.args.get("corps")
     txt_corps = txt_corps.replace("\n"," ")
     note = txt_titre + " € " + txt_corps + "\n"
     add_notes(txt_titre,txt_corps)
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     message = " notes "+ txt_titre + " sauvée "
 
     return  notepage.replace("$$MesNotes$$",message)
@@ -85,14 +82,14 @@ def ajoutnote():
 
 @app.route("/chercher")
 def chercher():
-    return get_html("recherche")
+    return render_template("recherche.html")
 
 @app.route("/rechercher")
 def rechercher():
     # return "résultat de ma recherche"
-    txt_recherche =flask.request.args.get("query")
+    txt_recherche =request.args.get("query")
     change_value=" "
-    notepage = get_html("notes")
+    notepage = render_template("notes.html")
     if (txt_recherche != ""):
         lesnotes=get_notes()
         trouvé=False
