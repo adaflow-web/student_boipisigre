@@ -77,7 +77,7 @@ def ajoutnote():
         txt_titre = data.get('titre')
         txt_corps = data.get("corps")
         if not txt_titre :
-            flash('Titolo esta postulata!')
+            flash('Un titre est obligatoire!')
         else:
             txt_corps = txt_corps.replace("\n"," ")
             note = txt_titre + " € " + txt_corps + "\n"
@@ -97,7 +97,7 @@ def rechercher():
     # return "résultat de ma recherche"
     txt_recherche =request.args.get("query")
     change_value=" "
-    notepage = render_template("notes.html")
+    # notepage = render_template("notes.html")
     if (txt_recherche != ""):
         lesnotes=get_notes()
         trouvé=False
@@ -108,8 +108,10 @@ def rechercher():
                 trouvé=True
 
         if not(trouvé):
-            change_value= change_value + "<p> note non trouvée</p>"
+            flash('note non trouvée!')
+            #change_value= change_value + "<p> note non trouvée</p>"
     else:
-        change_value= "<p> recherche non valide</p>"
-
+        flash('Votre texte est vide : recherche non valide !')
+        # change_value= "<p> recherche non valide</p>"
+    notepage = render_template("notes.html")
     return notepage.replace("$$MesNotes$$",change_value)
