@@ -7,12 +7,6 @@ from werkzeug.exceptions import abort
 app = Flask("notes")
 app.config['SECRET_KEY'] = 'Pierre'
 
-def get_html(page):
-    file=open(page+".html")
-    content=file.read()
-    file.close()
-    return content
-
 def get_notes():
     DBCon = sqlite3.connect('static/db/lesnotes.db')
 
@@ -73,9 +67,6 @@ def addnotes():
 def ajoutnote():
     message = ""
     if request.method == 'POST':
-        # data = ImmutableMultiDict(request.form)
-        # txt_titre = data.get('titre')
-        # txt_corps = data.get("corps")
         txt_titre = request.form['titre']
         txt_corps = request.form["corps"]
         if not txt_titre :
