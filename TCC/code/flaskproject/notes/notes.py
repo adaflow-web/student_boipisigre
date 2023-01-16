@@ -2,7 +2,7 @@
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
-from werkzeug.datastructures import ImmutableMultiDict
+# from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask("notes")
 app.config['SECRET_KEY'] = 'Pierre'
@@ -73,9 +73,11 @@ def addnotes():
 def ajoutnote():
     message = ""
     if request.method == 'POST':
-        data = ImmutableMultiDict(request.form)
-        txt_titre = data.get('titre')
-        txt_corps = data.get("corps")
+        # data = ImmutableMultiDict(request.form)
+        # txt_titre = data.get('titre')
+        # txt_corps = data.get("corps")
+        txt_titre = request.form['titre']
+        txt_corps = request.form["corps"]
         if not txt_titre :
             flash('Un titre est obligatoire!')
         else:
