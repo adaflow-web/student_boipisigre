@@ -2,13 +2,57 @@
 
 {% block content %}
 <body>
-      <h1> Voici mes {% block title %}  notes {% endblock %}</h1>
+<h1> Voici mes {% block title %}  notes {% endblock %}</h1>
+    <section class="section">
+        <div class="container">
+          <div class="b-table">
+            <div class="table-wrapper has-mobile-cards">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>Numéro</th>
+                  <th>Titre</th>
+                  <th>Création</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
 
-      {% for post in posts %}
-        <p class='titre'>{{ post[0] }}</p>
-        <p class="corps">{{ post[1] }}</p>
+                  {% for post in posts %}
+                  <tr>
+                    <td></td>
+            <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id']) }}">{{post['id']}} </td>
+            <td data-label="Titre">{{ post['titre'] }}</td>
+            <td data-label="Création">{{ post['creation'] }}</td>
+            <td><a href="{{ url_for('redakti', id=post['id']) }}"> Editer</a> </td>
+            <td><form action="{{ url_for('delete', id=post['id']) }}" method="POST">
+                <input type="submit" value="Supprimer la note"
+                        class="btn btn-danger btn-sm"
+                        onclick="return confirm('Ĉu vi certas, ke vi volas forigi ĉi tiun afiŝon?')">
+            </form>
+            </td>
 
-      {% endfor %}
+          </tr>
+                  {% endfor %}
+                <tr class="is-empty">
+                  <td colspan="7">
+                    <section class="section">
+                      <div class="content has-text-grey has-text-centered">
+                        <p><span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span></p>
+                        <p>C'est tout...</p>
+                      </div>
+                    </section>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+  </section>
+
 
 </body>
 {% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p class="titre">{% block title %} {{ post['titre'] }} {% endblock %}</p>
+
+    <p class="corps">{{ post['corps'] }}</p>
+    <p class="corps">{{ post['creation'] }}</p>
+
+{% endblock %}

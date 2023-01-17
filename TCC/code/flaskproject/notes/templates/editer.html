@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="titre">{% block title %} Edition de la note "{{ post['id'] }}" {% endblock %}</h1>
+<br>
+<form method="post">
+    <div class="form-group">
+        <label for="titolo">Titre</label>
+        <input type="text" name="titolo" placeholder="Afisôn titolo" size="25"
+               class="form-control"
+               value="{{ request.form['titre'] or post['titre'] }}">
+        </input>
+    </div>
+<hr>
+    <div class="form-group">
+        <label for="envaho">Contenu</label><br>
+        <textarea name="enhavo" placeholder="Votre texte" rows="10" cols="50"
+                  class="form-control"> {{ request.form['corps'] or post['corps'] }}</textarea>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">modifier</button>
+    </div>
+</form>
+
+{% endblock %}

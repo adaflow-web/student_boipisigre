@@ -24,6 +24,17 @@
   color: Red;
 }
 
+#name {
+  font-size: 48px;
+  text-align: center;
+}
+#bonjour {
+  font-size: 48px;
+  text-align: center;
+}
+.titre {
+  color: white;
+}
 h1 {
  text-align: center;
  color: white;

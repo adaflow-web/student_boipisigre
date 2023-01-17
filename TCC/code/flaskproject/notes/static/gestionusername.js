@@ -5,12 +5,12 @@ function lirenom() {
 if (localStorage.length >0) {
   var key="NomUtilisateur" ;
   var personne =localStorage.getItem(key);
-  document.getElementById("name").innerHTML = "Saluton " + personne + "! kiel vi fartas, hodiaũ?";
+  document.getElementById("name").innerHTML = ""  + personne;
    }
 else {
   let personne = prompt("Bonvolu skribas vian nomon", "Zamenov");
   if (personne != null) {
-    document.getElementById("name").innerHTML = "Saluton " + personne + "! kiel vi fartas, hodiaũ?";
+    document.getElementById("name").innerHTML = ""+ personne ;
     localStorage.setItem("NomUtilisateur",personne);
   }
 }
