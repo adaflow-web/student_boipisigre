@@ -4,6 +4,11 @@
 <body>
       <h1> Voici mes {% block title %}  notes {% endblock %}</h1>
 
-$$MesNotes$$
+      {% for post in posts %}
+        <p class='titre'>{{ post[0] }}</p>
+        <p class="corps">{{ post[1] }}</p>
+
+      {% endfor %}
+
 </body>
 {% endblock %}

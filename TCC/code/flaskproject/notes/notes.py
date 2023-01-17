@@ -7,15 +7,22 @@ from werkzeug.exceptions import abort
 app = Flask("notes")
 app.config['SECRET_KEY'] = 'Pierre'
 
-def get_notes():
+def get_notes(filtre):
     DBCon = sqlite3.connect('static/db/lesnotes.db')
 
     print("Connection established ..........")
     # print("=================================")
     # Ouvrir un curseur
     ltable = DBCon.cursor()
-    notes = ltable.execute("select titre ||' € '|| corps from notes").fetchall()
-    # print(notes)
+    print(filtre)
+    if filtre == "*":
+        notes = ltable.execute("select * from notes").fetchall()
+    else:
+        filtre="%"+filtre.upper()+"%"
+        print(filtre)
+        notes = ltable.execute("select * from notes where upper(titre) like ?",[filtre,]).fetchall()# print(notes)
+        print(notes)
+
     ltable.close()
     DBCon.close()
     # print("=================================")
@@ -36,14 +43,6 @@ def add_notes(col1,col2):
     DBCon.close()
     return
 
-def affiche_note(listenotes):
-    change_value=""
-    for note in listenotes :
-        # print(note[0])
-        champs=note[0].split("€")
-        change_value=change_value + "<p class='titre'>" + champs[0] + "</p> <p class='corps'>" + champs[1] + "</p>"
-    return change_value
-
 @app.route("/")
 def homepage():
     return render_template('index.html')
@@ -54,9 +53,9 @@ def about():
 
 @app.route("/notes")
 def notes():
-    notepage = render_template("notes.html")
-    lesnotes=get_notes()
-    return notepage.replace("$$MesNotes$$",affiche_note(lesnotes))
+    lesnotes=get_notes("*")
+    return render_template('notes.html', posts=lesnotes)
+
 
 @app.route("/addnotes")
 def addnotes():
@@ -73,12 +72,12 @@ def ajoutnote():
             flash('Un titre est obligatoire!')
         else:
             txt_corps = txt_corps.replace("\n"," ")
-            note = txt_titre + " € " + txt_corps + "\n"
+            # note = txt_titre + " € " + txt_corps + "\n"
             add_notes(txt_titre,txt_corps)
             message = " notes "+ txt_titre + " sauvée "
+            flash(message)
+    return render_template("notes.html")
 
-    notepage = render_template("notes.html")
-    return  notepage.replace("$$MesNotes$$",message)
 
 
 @app.route("/chercher")
@@ -92,19 +91,17 @@ def rechercher():
     change_value=" "
     # notepage = render_template("notes.html")
     if (txt_recherche != ""):
-        lesnotes=get_notes()
+        lesnotes=get_notes(txt_recherche)
         trouvé=False
-        for unenote in lesnotes:
-            champs=unenote[0].split("€")
-            if (txt_recherche.upper() in champs[0].upper()):
-                change_value=change_value + "<p class='titre'>" + champs[0] + "</p> <p class='corps'>" + champs[1] + "</p>"
-                trouvé=True
+        if len(lesnotes) > 0:
+            trouvé=True
 
         if not(trouvé):
             flash('note non trouvée!')
             #change_value= change_value + "<p> note non trouvée</p>"
     else:
         flash('Votre texte est vide : recherche non valide !')
+        lesnotes=get_notes("€$")
         # change_value= "<p> recherche non valide</p>"
-    notepage = render_template("notes.html")
-    return notepage.replace("$$MesNotes$$",change_value)
+
+    return render_template("notes.html", posts=lesnotes)
