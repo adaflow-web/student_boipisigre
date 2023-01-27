@@ -2,17 +2,20 @@
 
 {% block content %}
 <body>
-<h1> Voici mes {% block title %}  notes {% endblock %}</h1>
-    <section class="section">
-        <div class="container">
+
+<h1 class='title'> Voici mes {% block title %}  notes {% endblock %}</h1>
+
+<section class="section">
+  <div class="container">
           <div class="b-table">
             <div class="table-wrapper has-mobile-cards">
-              <table class="table">
+              <table class="table is-fullwidth is-striped is-hoverable is-fullwidth"">
                 <thead>
                 <tr>
                   <th></th>
                   <th>Numéro</th>
                   <th>Titre</th>
+                  <th>Corps</th>
                   <th>Création</th>
                   <th></th>
                   <th></th>
@@ -25,6 +28,7 @@
                     <td></td>
             <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id']) }}">{{post['id']}} </td>
             <td data-label="Titre">{{ post['titre'] }}</td>
+            <td data-label="Titre">{{ post['corps'] }}</td>
             <td data-label="Création">{{ post['creation'] }}</td>
             <td><a href="{{ url_for('redakti', id=post['id']) }}"> Editer</a> </td>
             <td><form action="{{ url_for('delete', id=post['id']) }}" method="POST">
@@ -36,17 +40,8 @@
 
           </tr>
                   {% endfor %}
-                <tr class="is-empty">
-                  <td colspan="7">
-                    <section class="section">
-                      <div class="content has-text-grey has-text-centered">
-                        <p><span class="icon is-large"><i class="mdi mdi-emoticon-sad mdi-48px"></i></span></p>
-                        <p>C'est tout...</p>
-                      </div>
-                    </section>
-                  </td>
-                </tr>
-                </tbody>
+              </tbody>
+
               </table>
             </div>
           </div>
