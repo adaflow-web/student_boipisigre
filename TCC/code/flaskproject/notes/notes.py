@@ -73,6 +73,9 @@ def notes():
 def addnotes():
     return render_template("ajoutnote.html")
 
+@app.route("/clear")
+def clear():
+    return render_template("ajoutnote.html")
 
 @app.route("/ajoutnote", methods=('GET', 'POST'))
 def ajoutnote():
