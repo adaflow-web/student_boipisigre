@@ -35,3 +35,6 @@ Il y a des conflits à gérer manuellement.
 
 ## Creation de la branche cssv1
 Pour intégrer Bulma
+
+## creation de la version V1
+finaliser
