@@ -34,6 +34,27 @@ def get_notes(filtre):
     # print("=================================")
     return  notes
 
+def get_notes_user(filtre):
+    DBCon = get_db_connection()
+
+    # print("=================================")
+    # Ouvrir un curseur
+    ltable = DBCon.cursor()
+    # print(filtre)
+    if filtre == "*":
+        notes = ltable.execute("select * from notes").fetchall()
+    else:
+        filtre=filtre.upper()+"%"
+        # print(filtre)
+        notes = ltable.execute("select * from notes where upper(nomcreateur) like ?",[filtre,]).fetchall()# print(notes)
+        # print(notes)
+
+    ltable.close()
+    DBCon.close()
+    # print("=================================")
+    return  notes
+
+
 def add_notes(col1,col2,col3):
     DBCon = get_db_connection()
     # print("=================================")
@@ -103,27 +124,39 @@ def post(post_id):
 
 @app.route("/chercher")
 def chercher():
-    return render_template("recherche.html")
+    return render_template("recherche.html",query="titre")
+
+@app.route("/cheruser")
+def cheruser():
+    return render_template("recherche.html", query="user")
+
 
 @app.route("/rechercher")
 def rechercher():
     # return "résultat de ma recherche"
-    txt_recherche =request.args.get("query")
-    change_value=" "
-    # notepage = render_template("notes.html")
-    if (txt_recherche != ""):
-        lesnotes=get_notes(txt_recherche)
-        trouvé=False
-        if len(lesnotes) > 0:
-            trouvé=True
+    txt_recherche =request.args.get("titre")
+    lesnotes=get_notes(txt_recherche)
+    trouvé=False
+    if len(lesnotes) > 0:
+        trouvé=True
 
-        if not(trouvé):
-            flash('note non trouvée!')
-            #change_value= change_value + "<p> note non trouvée</p>"
-    else:
-        flash('Votre texte est vide : recherche non valide !')
-        lesnotes=get_notes("€$")
-        # change_value= "<p> recherche non valide</p>"
+    if not(trouvé):
+        flash('note non trouvée!')
+
+    return render_template("notes.html", posts=lesnotes)
+
+@app.route("/recheruser")
+def recheruser():
+    # return "résultat de ma recherche"
+    txt_recherche =request.args.get("user")
+    # notepage = render_template("notes.html")
+    lesnotes=get_notes_user(txt_recherche)
+    trouvé=False
+    if len(lesnotes) > 0:
+        trouvé=True
+
+    if not(trouvé):
+        flash('note non trouvée!')
 
     return render_template("notes.html", posts=lesnotes)
 

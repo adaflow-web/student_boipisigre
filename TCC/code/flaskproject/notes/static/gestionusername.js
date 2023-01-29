@@ -3,8 +3,8 @@ function lirenom() {
 //  console.log(localStorage.length) ;
 // if (localStorage.length> 0) {
 if (localStorage.length >0) {
-  var key="NomUtilisateur" ;
-  var personne =localStorage.getItem(key);
+
+  var personne =localStorage.getItem("NomUtilisateur" );
   document.getElementById("name").innerHTML = ""  + personne;
    }
 else {
@@ -21,4 +21,9 @@ function clearnom() {
 localStorage.removeItem("NomUtilisateur");
 window.location.href = "/";
 
+}
+
+function remplirnom() {
+  var personne =localStorage.getItem("NomUtilisateur" );
+  document.getElementsByName('createur')[0].value=personne;
 }
