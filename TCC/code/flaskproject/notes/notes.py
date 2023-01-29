@@ -34,13 +34,13 @@ def get_notes(filtre):
     # print("=================================")
     return  notes
 
-def add_notes(col1,col2):
+def add_notes(col1,col2,col3):
     DBCon = get_db_connection()
     # print("=================================")
     # Ouvrir un curseur
     updtable = DBCon.cursor()
-    data = [col1,col2]
-    updtable.execute("insert into notes (titre,corps,creation,modif) values (?, ?, date(), date())", data)
+    data = [col1,col2,col3]
+    updtable.execute("insert into notes (titre,corps,creation,modif,nomcreateur) values (?, ?, date(), date(),?)", data)
     DBCon.commit()
     print ("sauver")
     updtable.close()
@@ -84,14 +84,15 @@ def ajoutnote():
     message = ""
     if request.method == 'POST':
         txt_titre = request.form['titre']
+        txt_createur = request.form['createur']
         txt_corps = request.form["corps"]
         if not txt_titre :
             flash('Un titre est obligatoire!')
         else:
             txt_corps = txt_corps.replace("\n"," ")
             # note = txt_titre + " € " + txt_corps + "\n"
-            add_notes(txt_titre,txt_corps)
-            message = " notes "+ txt_titre + " sauvée "
+            add_notes(txt_titre,txt_corps,txt_createur)
+            message = " notes "+ txt_titre + " ajoutée "
             flash(message)
     return redirect(url_for('notes'))
 

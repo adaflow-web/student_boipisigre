@@ -14,6 +14,7 @@
                 <tr>
                   <th></th>
                   <th>Numéro</th>
+                  <th>Nom Créateur</th>
                   <th>Titre</th>
                   <th>Corps</th>
                   <th>Création</th>
@@ -27,6 +28,7 @@
                   <tr>
                     <td></td>
             <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id']) }}">{{post['id']}} </td>
+            <td data-label="Nom Créateur">{{post['nomcreateur']}}</td>
             <td data-label="Titre">{{ post['titre'] }}</td>
             {% set titolo = post['corps'] %}
             <td data-label="Titre">{{ titolo[:50] }}</td>
