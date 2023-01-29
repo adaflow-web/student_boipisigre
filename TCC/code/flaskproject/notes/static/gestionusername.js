@@ -15,3 +15,10 @@ else {
   }
 }
 }
+
+function clearnom() {
+
+localStorage.removeItem("NomUtilisateur");
+window.location.href = "/";
+
+}

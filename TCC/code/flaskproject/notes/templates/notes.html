@@ -17,7 +17,7 @@
                   <th>Titre</th>
                   <th>Corps</th>
                   <th>Création</th>
-                  <th></th>
+                  <th>Modification</th>
                   <th></th>
                 </tr>
                 </thead>
@@ -28,15 +28,11 @@
                     <td></td>
             <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id']) }}">{{post['id']}} </td>
             <td data-label="Titre">{{ post['titre'] }}</td>
-            <td data-label="Titre">{{ post['corps'] }}</td>
+            {% set titolo = post['corps'] %}
+            <td data-label="Titre">{{ titolo[:50] }}</td>
             <td data-label="Création">{{ post['creation'] }}</td>
-            <td><a href="{{ url_for('redakti', id=post['id']) }}"> Editer</a> </td>
-            <td><form action="{{ url_for('delete', id=post['id']) }}" method="POST">
-                <input type="submit" value="Supprimer la note"
-                        class="btn btn-danger btn-sm"
-                        onclick="return confirm('Ĉu vi certas, ke vi volas forigi ĉi tiun afiŝon?')">
-            </form>
-            </td>
+            <td data-label="Modification">{{ post['modif'] }}</td>
+            <td> </td>
 
           </tr>
                   {% endfor %}

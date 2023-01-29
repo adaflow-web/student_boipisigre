@@ -40,7 +40,7 @@ def add_notes(col1,col2):
     # Ouvrir un curseur
     updtable = DBCon.cursor()
     data = [col1,col2]
-    updtable.execute("insert into notes (titre,corps,creation) values (?, ?, date())", data)
+    updtable.execute("insert into notes (titre,corps,creation,modif) values (?, ?, date(), date())", data)
     DBCon.commit()
     print ("sauver")
     updtable.close()
@@ -52,9 +52,11 @@ def get_post(post_id):
     post = conn.execute('SELECT * FROM notes WHERE id = ?',
                         (post_id,)).fetchone()
     conn.close()
+    print(post)
     if post is None:
         abort(404)
     return post
+
 @app.route("/")
 def homepage():
     return render_template('index.html')
@@ -75,7 +77,7 @@ def addnotes():
 
 @app.route("/clear")
 def clear():
-    return render_template("ajoutnote.html")
+    return render_template("index.html", action="clear")
 
 @app.route("/ajoutnote", methods=('GET', 'POST'))
 def ajoutnote():
@@ -135,7 +137,7 @@ def redakti(id):
             flash('Un titre est obligatoire!')
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE notes SET titre = ?, corps = ?, creation=date()'
+            conn.execute('UPDATE notes SET titre = ?, corps = ?, modif=date()'
                          ' WHERE id = ?',
                          (titolo, enhavo, id))
             conn.commit()

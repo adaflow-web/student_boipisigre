@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<body onload=lirenom();>
+<body
+  {% if action == "clear" %}
+      onload=clearnom();
+{% endif %}
+   onload=lirenom();>
     <h1> Bienvenue sur ma {% block title %} gestion de note {% endblock %}</h1>
 
   <p id="bonjour"> Bonjour </p>
   <p id="name"> </p>
 
-    <script src="static/gestionusername.js"></script>
+<!--    <script src="static/gestionusername.js"></script> -->
     <hr>
 </body>
 {% endblock %}
