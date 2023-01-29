@@ -2,39 +2,51 @@
 
 {% block content %}
 <body>
-  <h1 class='title'>{% block title %} About  {% endblock %}Pierre.</h1>
+  <h1 class='title'>{% block title %} Au sujet {% endblock %} l'application notes.</h1>
+  <hr>
 <br/>
-<h2> Qui suis-je ? </h2>
-<br/>
-<p>Il est toujours difficile de se définir ou décire </p>
-<br/>
-Un essai.
-<ol>
-  <li> un passionné </li>
-  <ol>
-    <li> ancien programmeur </li>
-    <li> un administrateur de base de données </li>
+<h2 class="subtitle is-2"> Quelles fonctionnalités? </h2>
+<div class="content">
+<ol type="1">
+  <li> Liste des notes </li>
+  <ol type="1">
+    <li> Editer une note </li>
+    <li> Suprimer une note</li>
+
   </ol>
-  <li> un amateur </li>
-  <ol>
-    <li>de BD, de Go ... </li>
-    <li> de théatre </li>
-    <li> de sculpture </li>
+  <li> Ajout d'une note </li>
+  <li> Rechercher une note </li>
+
+  <li> Changer d'utilisateur </li>
+  <li> Explication</li>
+
+</ol>
+</div>
+<hr>
+<h2 class="subtitle is-2"> Quels outils? </h2>
+<div class="content">
+<ol type="1">
+  <li> Pour l'interface</li>
+  <ol type="1">
+  <li> HTML </li>
+  <li>  CSS
+    <ol type="A">
+      <li>Framework <a href="https://bulma.io/">Bulma</a></li>
+      <li>Responsive CSS <a href="https://www.adam-bray.com/2018/04/03/responsive-bulma-css-navigation-bar/">Navigation Bar</a> pour Bulma<</li>
+      <li>Responsive CSS <a href="https://justboil.github.io/bulma-responsive-tables/">tables</a> pour Bulma</li>
+    </ol>
+  <li> Javascript </li>
+  </ol>
+  <li>Pour la partie serveur</li>
+   <ol type="A">
+  <li> Python </li>
+    <li> flask </li>
+    <li> jinja2 </li>
+  <li> Sqlite </li>
   </ol>
 </ol>
 <br/>
-<h2 class='title'> programmeur </h2>
-Quand j'ai commencé dans un temps trés lointain où on ne parlait pas de développeurs
-mais de programmeurs.
-Le web n'existait pas les bases de données naisssaient.
+</div>
+<hr>
 
-<h2 class='title'> DBA </h2>
-Je l'avoue toute ma vie j'ai traité des données....
-mais j'ai mal fini ;-)
-
-<h3 class='title'> Gardons le contact </h3>
-Donnez moi votre email :
-<input type="text" id="lname" name="lname" value="Doe"><br><br>
-  <input type="submit" value="Enregister">
-<body>
 {% endblock %}

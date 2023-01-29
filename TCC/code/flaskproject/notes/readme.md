@@ -22,3 +22,16 @@ Conséquence les fonction d'accédant aux données doivent être modifié:
 * les codes
   * champs=note.split("€") --> champs=note[0].split("€")
   * champs=unenote.split("€") --> champs=unenote[0].split("€")
+
+## Ouverture d'une branch jinja.
+
+Cette branch a été créé à partir de  la branch main :-(
+
+Premier test avec jinja
+
+## merge des branche sqlite et jinja2
+
+Il y a des conflits à gérer manuellement.
+
+## Creation de la branche cssv1
+Pour intégrer Bulma
