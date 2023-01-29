@@ -3,14 +3,16 @@
 {% block content %}
 
 <body>
-<h1> {% block title %} Rechercher {% endblock %} une note </h1>
-
-<center><p> Saisir votre recherche </p>
-
+<h1 class='title'> {% block title %} Rechercher {% endblock %} une note </h1>
+<hr>
+<center>
+  <h2 class=subtitile is-3> Saisissez votre recherche </h2>
+<br>
 <form action="/rechercher" method="get">
   <input type="text" id="message" name="query" maxlength="15" size="16">
   <input type="submit" value="Rechercher!">
 </form>
 </center>
+<hr>
 </body>
 {% endblock %}

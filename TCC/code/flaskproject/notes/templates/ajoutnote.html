@@ -2,15 +2,16 @@
 
 {% block content %}
 <body>
-    <h1>{% block title %} Ajout {% endblock %} d'une note  </h1>
+    <h1 class='title is-2'>{% block title %} Ajout {% endblock %} d'une note  </h1>
+
+    <hr>
 
 <center>
-
-<p> Saisissez votre note</p>
+<h2 class="subtitle is-4"> Saisissez votre note</h2>
 
 <form action="/ajoutnote" method="post">
   <div class="form-group">
-    <label for="titre">Titre:</label>
+    <label for="titre">Titre:</label> <br/>
     <input type="text" name="titre"
                    placeholder="Le Titre" class="form-control"
                    value="{{ request.form['titre'] }}"></input>
@@ -26,5 +27,7 @@
 
 </form>
 </center>
+<hr>
+
 </body>
 {% endblock %}
