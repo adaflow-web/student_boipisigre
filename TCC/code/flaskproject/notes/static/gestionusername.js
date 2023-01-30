@@ -10,9 +10,14 @@ if (localStorage.length >0) {
 else {
   let personne = prompt("Bonvolu skribas vian nomon", "Zamenov");
   if (personne != null) {
-    document.getElementById("name").innerHTML = ""+ personne ;
+    // document.getElementById("name").innerHTML = ""+ personne ;
     localStorage.setItem("NomUtilisateur",personne);
   }
+  if (personne == "") {
+    // document.getElementById("name").innerHTML = ""+ personne ;
+    localStorage.removeItem("NomUtilisateur");
+  }
+  window.location.href = "/";
 }
 }
 
