@@ -2,6 +2,7 @@
 import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect
 from werkzeug.exceptions import abort
+
 # from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask("notes")
@@ -78,6 +79,25 @@ def get_post(post_id):
         abort(404)
     return post
 
+def get_user():
+    conn = get_db_connection()
+    post = conn.execute('SELECT nom FROM utilisateur WHERE id = 1').fetchone()
+    conn.close()
+    print(post)
+    if post is None:
+        abort(404)
+    return post
+
+def saveuserDB(nom):
+    conn = get_db_connection()
+    # data=[nom,]
+    conn.execute('UPDATE utilisateur SET nom = ?, modif=date() '
+                ' WHERE id = 1',
+                  (nom,))
+    conn.commit()
+    conn.close()
+    return nom
+
 @app.route("/")
 def homepage():
     return render_template('index.html')
@@ -86,11 +106,13 @@ def homepage():
 def about():
     return render_template("about.html")
 
+
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
-    return render_template('notes.html', posts=lesnotes)
-
+    utilisateur=get_user()
+    #print(utilisateur[0])
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
 
 @app.route("/addnotes")
 def addnotes():
@@ -98,7 +120,7 @@ def addnotes():
 
 @app.route("/clear")
 def clear():
-    return render_template("index.html", action="clear")
+    return render_template("utilisateur.html", action="clear")
 
 @app.route("/ajoutnote", methods=('GET', 'POST'))
 def ajoutnote():
@@ -117,10 +139,10 @@ def ajoutnote():
             flash(message)
     return redirect(url_for('notes'))
 
-@app.route('/<int:post_id>')
-def post(post_id):
+@app.route('/<int:post_id>/<string:createur>')
+def post(post_id,createur):
     post = get_post(post_id)
-    return render_template('unenote.html', post=post)
+    return render_template('unenote.html', post=post, auteur=createur)
 
 @app.route("/chercher")
 def chercher():
@@ -143,7 +165,9 @@ def rechercher():
     if not(trouvé):
         flash('note non trouvée!')
 
-    return render_template("notes.html", posts=lesnotes)
+    utilisateur=get_user()
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
+
 
 @app.route("/recheruser")
 def recheruser():
@@ -158,7 +182,17 @@ def recheruser():
     if not(trouvé):
         flash('note non trouvée!')
 
-    return render_template("notes.html", posts=lesnotes)
+    utilisateur=get_user()
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
+
+
+@app.route("/saveuser")
+def saveuser():
+    # return "résultat de ma recherche"
+    nomuser =request.args.get("user")
+    saveuserDB(nomuser)
+
+    return render_template("index.html",NomUtilisateur=nomuser)
 
 @app.route('/redakti/<int:id>', methods=('GET', 'POST'))
 def redakti(id):

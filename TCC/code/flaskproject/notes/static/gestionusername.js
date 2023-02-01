@@ -8,23 +8,25 @@ if (localStorage.length >0) {
   document.getElementById("name").innerHTML = ""  + personne;
    }
 else {
-  let personne = prompt("Bonvolu skribas vian nomon", "Zamenov");
-  if (personne != null) {
-    // document.getElementById("name").innerHTML = ""+ personne ;
-    localStorage.setItem("NomUtilisateur",personne);
-  }
-  if (personne == "") {
-    // document.getElementById("name").innerHTML = ""+ personne ;
-    localStorage.removeItem("NomUtilisateur");
-  }
-  window.location.href = "/";
+  window.location.href = "/clear";
+  // let personne = prompt("Bonvolu skribas vian nomon", "Zamenov");
 }
+
 }
+
+function save_data() {
+    var input = document.getElementById("message");
+    localStorage.setItem("NomUtilisateur", input.value);
+    //var storedValue = localStorage.getItem("server");
+    // etc..
+  }
+
+
 
 function clearnom() {
 
 localStorage.removeItem("NomUtilisateur");
-window.location.href = "/";
+// window.location.href = "/";
 
 }
 

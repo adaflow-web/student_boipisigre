@@ -30,9 +30,9 @@
             <td data-label="Titre">{{ post['titre'] }}</td>
             <td data-label="Titre">{{ post['corps'] }}</td>
             <td data-label="Création">{{ post['creation'] }}</td>
-            <!-- {% if action == "clear" %}
-                onload=clearnom();
-          {% endif %} -->
+
+            {% if auteur == post['nomcreateur'] %}
+
             <td><a href="{{ url_for('redakti', id=post['id']) }}"> Editer</a> </td>
             <td><form action="{{ url_for('delete', id=post['id']) }}" method="POST">
                 <input type="submit" value="Supprimer la note"
@@ -40,7 +40,7 @@
                         onclick="return confirm('Ĉu vi certas, ke vi volas forigi ĉi tiun afiŝon?')">
             </form>
             </td>
-
+          {% endif %}
           </tr>
 
               </tbody>

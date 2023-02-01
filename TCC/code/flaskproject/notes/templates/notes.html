@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<body>
+<body ">
 
 <h1 class='title'> Voici mes {% block title %}  notes {% endblock %}</h1>
 <hr>
@@ -27,7 +27,7 @@
                   {% for post in posts %}
                   <tr>
                     <td></td>
-            <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id']) }}">{{post['id']}} </td>
+            <td data-label="Numéro"> <a href="{{ url_for('post', post_id=post['id'],createur=nom) }}">{{post['id']}} </td>
             <td data-label="Nom Créateur">{{post['nomcreateur']}}</td>
             <td data-label="Titre">{{ post['titre'] }}</td>
             {% set titolo = post['corps'] %}
