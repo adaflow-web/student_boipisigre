@@ -72,6 +72,18 @@ def add_notes(col1,col2,col3):
     DBCon.close()
     return
 
+def add_user(col1,col2):
+    DBCon = get_db_connection()
+    # print("=================================")
+    # Ouvrir un curseur
+    updtable = DBCon.cursor()
+    data = [col1,col2]
+    updtable.execute("insert into utilisateur (nom,mdp,modif) values (?, ?, date())", data)
+    DBCon.commit()
+    updtable.close()
+    DBCon.close()
+    return
+
 def get_post(post_id):
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM notes WHERE id = ?',
@@ -86,63 +98,55 @@ def get_user(nom):
     conn = get_db_connection()
     mdp = conn.execute('SELECT mdp FROM utilisateur WHERE nom = ?',(nom,)).fetchone()
     conn.close()
-    print(mdp[0])
-    if mdp is None:
-        abort(404)
-    return mdp
 
-def saveuserDB(nom):
-    session["user_name"] = nom
-    '''    conn = get_db_connection()
-        # data=[nom,]
-        conn.execute('UPDATE utilisateur SET nom = ?, modif=date() '
-                ' WHERE id = 1',
-                  (nom,))
-                  conn.commit()
-                  conn.close()
-    '''
-    return nom
+     #if mdp is None:
+    #    abort(404)
+    return mdp
 
 @app.route("/")
 def homepage():
-    #print(session['logged_in'])
     if not session.get("logged_in"):
-        # print(session["user_name"])
         return render_template('login.html')
     else:
-        print(session["user_name"])
         return render_template('index.html')
 
 @app.route('/login', methods=['POST',"GET"])
 def do_admin_login():
-
-    #
     nom=request.args.get("username")
     pwd=get_user(nom)
-
-    if request.args.get("password") == pwd[0] :
-        session['logged_in'] = True
-        session['user_name'] = nom
-        # print(session['logged_in'])
-        # print(session['user_name'])
-
+    session['logged_in'] = False
+    if pwd is None :
+        flash('Utilisateur inconnu!')
     else:
-        flash('wrong password!')
-        session['logged_in'] = False
+        if request.args.get("password") == pwd[0] :
+            session['logged_in'] = True
+            session['user_name'] = nom
+        else:
+            flash('Mot de passe éroné!')
 
+    return homepage()
+
+@app.route('/register', methods=['POST',"GET"])
+def register():
+    return render_template("register.html", action="clear")
+
+@app.route('/registeruser', methods=['POST',"GET"])
+def registeruser():
+
+    nom=request.args.get("username")
+    pwd=request.args.get("password")
+    add_user(nom, pwd)
+    session['logged_in'] = False
     return homepage()
 
 @app.route("/about")
 def about():
     return render_template("about.html")
 
-
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
     utilisateur=session["user_name"]
-    # utilisateur=get_user()
-    #print(utilisateur[0])
     return render_template('notes.html', posts=lesnotes, nom=utilisateur)
 
 @app.route("/addnotes")
@@ -196,7 +200,6 @@ def rechercher():
     if not(trouvé):
         flash('note non trouvée!')
 
-    # utilisateur=get_user()
     utilisateur=session["user_name"]
     return render_template('notes.html', posts=lesnotes, nom=utilisateur)
 
@@ -217,14 +220,6 @@ def recheruser():
     utilisateur=session["user_name"]
     return render_template('notes.html', posts=lesnotes, nom=utilisateur)
 
-
-@app.route("/saveuser")
-def saveuser():
-    # return "résultat de ma recherche"
-    nomuser =request.args.get("user")
-    saveuserDB(nomuser)
-
-    return render_template("index.html",NomUtilisateur=nomuser)
 
 @app.route('/redakti/<int:id>', methods=('GET', 'POST'))
 def redakti(id):
