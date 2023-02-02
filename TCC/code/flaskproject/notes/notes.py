@@ -82,14 +82,14 @@ def get_post(post_id):
         abort(404)
     return post
 
-def get_user():
+def get_user(nom):
     conn = get_db_connection()
-    post = conn.execute('SELECT nom FROM utilisateur WHERE id = 1').fetchone()
+    mdp = conn.execute('SELECT mdp FROM utilisateur WHERE nom = ?',(nom,)).fetchone()
     conn.close()
-    print(post)
-    if post is None:
+    print(mdp[0])
+    if mdp is None:
         abort(404)
-    return post
+    return mdp
 
 def saveuserDB(nom):
     session["user_name"] = nom
@@ -105,7 +105,32 @@ def saveuserDB(nom):
 
 @app.route("/")
 def homepage():
-    return render_template('index.html')
+    #print(session['logged_in'])
+    if not session.get("logged_in"):
+        # print(session["user_name"])
+        return render_template('login.html')
+    else:
+        print(session["user_name"])
+        return render_template('index.html')
+
+@app.route('/login', methods=['POST',"GET"])
+def do_admin_login():
+
+    #
+    nom=request.args.get("username")
+    pwd=get_user(nom)
+
+    if request.args.get("password") == pwd[0] :
+        session['logged_in'] = True
+        session['user_name'] = nom
+        # print(session['logged_in'])
+        # print(session['user_name'])
+
+    else:
+        flash('wrong password!')
+        session['logged_in'] = False
+
+    return homepage()
 
 @app.route("/about")
 def about():
@@ -126,7 +151,7 @@ def addnotes():
 
 @app.route("/clear")
 def clear():
-    return render_template("utilisateur.html", action="clear")
+    return render_template("login.html", action="clear")
 
 @app.route("/ajoutnote", methods=('GET', 'POST'))
 def ajoutnote():
@@ -191,7 +216,7 @@ def recheruser():
 
     utilisateur=session["user_name"]
     return render_template('notes.html', posts=lesnotes, nom=utilisateur)
-    
+
 
 @app.route("/saveuser")
 def saveuser():

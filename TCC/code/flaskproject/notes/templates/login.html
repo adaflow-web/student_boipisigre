@@ -11,10 +11,10 @@
 <h2 class="subtitile is-3"> Saisissez votre nom </h2>
   <hr>
 
-<form onsubmit="save_data()" action="/saveuser" method="get">
-  <input type="text" id="message" name="user" value="*" required maxlength="15" size="16">
-
-  <input type="submit" value="Sauver!">
+<form onsubmit="save_data()" action="/login" method="get">
+  <input type="text" id="message" name="username" placeholder="Username">
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit" value="Log in">
 </form>
 
 </center>
