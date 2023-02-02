@@ -16,35 +16,12 @@
        <a class="navbar-item" href="{{ url_for('homepage')}}">Accueil</a>
        <a class="navbar-item" href="{{url_for('notes')}}">Lister</a>
        <a class="navbar-item" href="{{url_for('addnotes')}}">Ajouter</a>
-       <div class="navbar-menu fadeIn animated faster" id="navbar-menu">
-       <div class="navbar-end">
-         <div class="navbar-item has-dropdown has-dropdown-with-icons has-divider is-hoverable">
-           <a class="navbar-link is-arrowless">
-             <span class="icon"><i class="mdi mdi-menu"></i></span>
-             <span>Chercher par</span>
-             <span class="icon">
-             <i class="mdi mdi-chevron-down"></i>
-           </span>
-           </a>
-           <div class="navbar-dropdown">
-             <a class="navbar-item" href="{{url_for('chercher')}}">
-               <span class="icon"><i class="mdi mdi-account"></i></span>
-               <span>Titre</span>
-             </a>
-             <a class="navbar-item">
-               <a class="navbar-item" href="{{url_for('cheruser')}}">
-               <span class="icon"><i class="mdi mdi-settings"></i></span>
-               <span>Créateur </span> </a>
-             </a>
-           </div>
-         </div>
-         </div>
-         </div>
+       <a class="navbar-item" href="{{url_for('chercher')}}">Chercher Titre</a>
+       <a class="navbar-item" href="{{url_for('cheruser')}}">Recherche Créateur </a>
        <a class="navbar-item" href="{{url_for('clear')}}"">Changer Utilisateur</a>
        <a class="navbar-item" href="{{url_for('about')}}">Au sujet</a>
      </div>
    </div>
-
 
  </nav>
 

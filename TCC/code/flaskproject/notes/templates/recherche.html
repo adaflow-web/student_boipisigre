@@ -7,7 +7,7 @@
 {% if query == "titre" %}
 <center>
 <h2 class='subtitle is-2'> par titre </h2>
-<h2 class="subtitile is-3"> Saisissez votre recherche </h2>
+<h2 class="subtitile is-3"> Saisissez le titre </h2>
 <hr>
 <form action="/rechercher" method="get">
   <input type="text" id="message" name="titre" value="*" required maxlength="15" size="16">
@@ -18,8 +18,8 @@
 {% endif %}
 {% if query == "user" %}
   <center>
-<h2 class='subtitle is-2'> par auteurs </h2>
-<h2 class="subtitile is-3"> Saisissez l'utilisateur </h2>
+<h2 class='subtitle is-2'> par auteur </h2>
+<h2 class="subtitile is-3"> Saisissez le nom </h2>
   <hr>
 
 <form action="/recheruser" method="get">
