@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- bulma CSS  -->
-     <link rel="stylesheet" href="{{url_for('static', filename='css/bulma.css')}}">
-     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+     <!-- <link rel="stylesheet" href="{{url_for('static', filename='css/bulma.css')}}">  -->
+     <link rel="stylesheet" href="{{url_for('static', filename='css/main.min.css')}}">
      <!-- oldstyle CSS -->
      <!--  <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"> -->
 
@@ -36,6 +36,7 @@
   <title>{% block title %} {% endblock %}</title>
 
   <script src="{{url_for('static',filename='gestionusername.js')}}"></script>
+  <script src="{{url_for('static',filename='main.min.js')}}"></script>
 
   </head>
 

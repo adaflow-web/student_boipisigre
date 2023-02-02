@@ -21,8 +21,6 @@ function save_data() {
     // etc..
   }
 
-
-
 function clearnom() {
 
 localStorage.removeItem("NomUtilisateur");
