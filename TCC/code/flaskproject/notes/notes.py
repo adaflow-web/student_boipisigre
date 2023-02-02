@@ -1,12 +1,15 @@
 
 import sqlite3
-from flask import Flask, render_template, request, url_for, flash, redirect
+from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort
 
 # from werkzeug.datastructures import ImmutableMultiDict
 
 app = Flask("notes")
-app.config['SECRET_KEY'] = 'Pierre'
+SESSION_TYPE = 'redis'
+app.config.from_object('notes')
+app.config.update(SECRET_KEY='osd(99092=36&462134kjKDhuIS_d23')
+
 
 
 def get_db_connection():
@@ -89,13 +92,15 @@ def get_user():
     return post
 
 def saveuserDB(nom):
-    conn = get_db_connection()
-    # data=[nom,]
-    conn.execute('UPDATE utilisateur SET nom = ?, modif=date() '
+    session["user_name"] = nom
+    '''    conn = get_db_connection()
+        # data=[nom,]
+        conn.execute('UPDATE utilisateur SET nom = ?, modif=date() '
                 ' WHERE id = 1',
                   (nom,))
-    conn.commit()
-    conn.close()
+                  conn.commit()
+                  conn.close()
+    '''
     return nom
 
 @app.route("/")
@@ -110,9 +115,10 @@ def about():
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
-    utilisateur=get_user()
+    utilisateur=session["user_name"]
+    # utilisateur=get_user()
     #print(utilisateur[0])
-    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur)
 
 @app.route("/addnotes")
 def addnotes():
@@ -165,8 +171,9 @@ def rechercher():
     if not(trouvé):
         flash('note non trouvée!')
 
-    utilisateur=get_user()
-    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
+    # utilisateur=get_user()
+    utilisateur=session["user_name"]
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur)
 
 
 @app.route("/recheruser")
@@ -182,9 +189,9 @@ def recheruser():
     if not(trouvé):
         flash('note non trouvée!')
 
-    utilisateur=get_user()
-    return render_template('notes.html', posts=lesnotes, nom=utilisateur[0])
-
+    utilisateur=session["user_name"]
+    return render_template('notes.html', posts=lesnotes, nom=utilisateur)
+    
 
 @app.route("/saveuser")
 def saveuser():
