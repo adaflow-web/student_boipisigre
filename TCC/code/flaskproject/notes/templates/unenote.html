@@ -28,7 +28,7 @@
             <td></td>
             <td data-label="Nom Créateur">{{post['nomcreateur']}}</td>
             <td data-label="Titre">{{ post['titre'] }}</td>
-            <td data-label="Titre">{{ post['corps'] }}</td>
+            <td data-label="Corps">{{ post['corps'] | safe }}</td>
             <td data-label="Création">{{ post['creation'] }}</td>
 
             {% if auteur == post['nomcreateur'] %}

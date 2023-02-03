@@ -1,5 +1,6 @@
 
 import sqlite3
+import markdown
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort
 
@@ -87,9 +88,9 @@ def add_user(col1,col2):
 def get_post(post_id):
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM notes WHERE id = ?',
-                        (post_id,)).fetchone()
+                        (post_id,)).fetchall()
     conn.close()
-    print(post)
+    # print(post)
     if post is None:
         abort(404)
     return post
@@ -182,7 +183,18 @@ def ajoutnote():
 @app.route('/<int:post_id>/<string:createur>')
 def post(post_id,createur):
     post = get_post(post_id)
-    return render_template('unenote.html', post=post, auteur=createur)
+    rows=[]
+    for ligne in post:
+        ligne = dict(ligne)
+        print(ligne['corps'])
+        ligne['corps'] = markdown.markdown(ligne['corps'])
+        rows.append(ligne)
+
+    print(rows)
+    print(rows[0]['corps'])
+
+    # post['corps']= markdown.markdown(post['corps'])
+    return render_template('unenote.html', post=rows[0], auteur=createur)
 
 @app.route("/chercher")
 def chercher():
@@ -244,7 +256,7 @@ def redakti(id):
             conn.close()
             return redirect(url_for('notes'))
 
-    return render_template('editer.html', post=post)
+    return render_template('editer.html', post=post[0])
 
 @app.route('/<int:id>/forigi', methods=('POST',))
 def delete(id):
