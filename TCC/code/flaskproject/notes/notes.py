@@ -106,7 +106,7 @@ def get_user(nom):
 @app.route("/")
 def homepage():
     if not session.get("logged_in"):
-        return render_template('login.html')
+        return render_template('login.html',action='message')
     else:
         return render_template('index.html')
 
@@ -146,8 +146,13 @@ def about():
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
-    utilisateur=session["user_name"]
-    return render_template('notes.html', posts=lesnotes, nom=utilisateur)
+    if session.get("logged_in") :
+        utilisateur=session["user_name"]
+        return render_template('notes.html', posts=lesnotes, nom=utilisateur)
+    else:
+        flash("Vous n'êtes pas connecté!")
+        return homepage()
+
 
 @app.route("/addnotes")
 def addnotes():

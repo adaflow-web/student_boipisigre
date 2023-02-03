@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
-
+{% block title %}  Connection  {% endblock %}
 {% block content %}
-<body  onload=clearnom(); >
+<body {% if action == "clear" %}  onload=clearnom(); {% endif %} >
 
-<h1 class='title'> {% block title %} Changement {% endblock %} de l'Utilisateur  </h1>
 <hr>
 
-  <center>
+{% if action == "message" %}
 
+<center>
+  <h1 class='title'> Information </h1>
+<h2 class="subtitle is-2">Bonjour vous n'etes pas connecté à votre Utilisateur </h2>
+
+Connectez vous par le choix connection si vous avez une utilisateur, sinon enregistrez-vous .
+</center>
+{% else %}
+
+<center>
+<h1 class='title'> Connection</h1>
 <h2 class="subtitile is-3"> Saisissez votre nom </h2>
   <hr>
 
@@ -18,6 +27,7 @@
 </form>
 
 </center>
+{% endif %}
 <hr>
 
 </body>
