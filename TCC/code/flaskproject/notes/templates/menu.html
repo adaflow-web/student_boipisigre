@@ -18,18 +18,39 @@
        <a class="navbar-item" href="{{ url_for('homepage')}}">Accueil</a>
        <a class="navbar-item" href="{{url_for('notes')}}">Lister</a>
        <a class="navbar-item" href="{{url_for('addnotes')}}">Ajouter</a>
-       <a class="navbar-item" href="{{url_for('chercher')}}">Chercher par Titre</a>
-       <a class="navbar-item" href="{{url_for('cheruser')}}">Chercher par Créateur </a>
-       {% if session['logged_in'] %}
-       <a class="navbar-item  is-active" href="#">Connection</a>
-       <a class="navbar-item" href="{{url_for('logout')}}"">De-connection</a>
-       <a class="navbar-item" href="#">Enregistrement</a>
+    <div class="navbar-item has-dropdown is-hoverable">
+      <a class="navbar-link">
+         Recherche
+      </a>
+
+      <div class="navbar-dropdown">
+        <a class="navbar-item" href="{{url_for('chercher')}}">par Titre</a>
+        <a class="navbar-item" href="{{url_for('cheruser')}}">par Créateur </a>
+      </div>
+    </div>
+
+
+       <div class="navbar-item has-dropdown is-hoverable">
+         <a class="navbar-link">
+            Gestion connexion
+         </a>
+         <div class="navbar-dropdown">
+
+ {% if session['logged_in'] %}
+
+           <a class="navbar-item  " href="#">Connection</a>
+           <a class="navbar-item is-active" href="{{url_for('logout')}}"">De-connection</a>
+           <a class="navbar-item" href="#">Enregistrement</a>
+
        {% else %}
-       <a class="navbar-item " href="{{url_for('clear')}}"">Connection</a>
-       <a class="navbar-item is-active" href="#">De-connection</a>
-        <a class="navbar-item" href="{{url_for('register')}}"">Enregistrement</a>
+          <a class="navbar-item is-active" href="{{url_for('clear')}}"">Connection</a>
+          <a class="navbar-item " href="#">De-connection</a>
+          <a class="navbar-item is-active" href="{{url_for('register')}}"">Enregistrement</a>
        {% endif%}
 
+        </div>
+
+      </div>
        <a class="navbar-item" href="{{url_for('about')}}">Au sujet</a>
      </div>
    </div>
