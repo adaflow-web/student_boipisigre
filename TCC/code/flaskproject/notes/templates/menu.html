@@ -20,7 +20,13 @@
        <a class="navbar-item" href="{{url_for('addnotes')}}">Ajouter</a>
        <a class="navbar-item" href="{{url_for('chercher')}}">Chercher par Titre</a>
        <a class="navbar-item" href="{{url_for('cheruser')}}">Chercher par Créateur </a>
-       <a class="navbar-item" href="{{url_for('clear')}}"">Connection</a>
+       {% if session['logged_in'] %}
+       <a class="navbar-item  is-active" href="#"">Connection</a>
+       <a class="navbar-item" href="{{url_for('logout')}}"">De-connection</a>
+       {% else %}
+       <a class="navbar-item " href="{{url_for('clear')}}"">Connection</a>
+       <a class="navbar-item is-active" href="#">De-connection</a>
+       {% endif%}
        <a class="navbar-item" href="{{url_for('register')}}"">Enregistrement</a>
        <a class="navbar-item" href="{{url_for('about')}}">Au sujet</a>
      </div>

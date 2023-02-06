@@ -131,6 +131,12 @@ def do_admin_login():
 def register():
     return render_template("register.html", action="clear")
 
+@app.route('/logout', methods=['POST',"GET"])
+def logout():
+    session['logged_in'] = False
+    return render_template("index.html", action="clear")
+
+
 @app.route('/registeruser', methods=['POST',"GET"])
 def registeruser():
 
