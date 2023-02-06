@@ -42,3 +42,9 @@ finaliser
 ## creation de la version Developpement V2
 
 pour filtrage sur le NomUtilisateur
+
+## creation Version 4
+Ajouter du hash du mot de passe
+
+## version 5
+Ajout menu dropdown ;-)
