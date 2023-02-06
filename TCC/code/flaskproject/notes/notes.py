@@ -3,6 +3,7 @@ import sqlite3
 import markdown
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # from werkzeug.datastructures import ImmutableMultiDict
 
@@ -73,13 +74,13 @@ def add_notes(col1,col2,col3):
     DBCon.close()
     return
 
-def add_user(col1,col2):
+def add_user(nom,mdp):
     DBCon = get_db_connection()
     # print("=================================")
-    # Ouvrir un curseur
+    hashpwd=generate_password_hash(mdp)
     updtable = DBCon.cursor()
-    data = [col1,col2]
-    updtable.execute("insert into utilisateur (nom,mdp,modif) values (?, ?, date())", data)
+    data = [nom,hashpwd]
+    updtable.execute("insert into utilisateur (nom,modif, hashpwd) values (?, date(),?)", data)
     DBCon.commit()
     updtable.close()
     DBCon.close()
@@ -97,11 +98,8 @@ def get_post(post_id):
 
 def get_user(nom):
     conn = get_db_connection()
-    mdp = conn.execute('SELECT mdp FROM utilisateur WHERE nom = ?',(nom,)).fetchone()
+    mdp = conn.execute('SELECT hashpwd FROM utilisateur WHERE nom = ?',(nom,)).fetchone()
     conn.close()
-
-     #if mdp is None:
-    #    abort(404)
     return mdp
 
 @app.route("/")
@@ -119,7 +117,7 @@ def do_admin_login():
     if pwd is None :
         flash('Utilisateur inconnu!')
     else:
-        if request.args.get("password") == pwd[0] :
+        if check_password_hash(pwd[0], request.args.get("password")):
             session['logged_in'] = True
             session['user_name'] = nom
         else:
