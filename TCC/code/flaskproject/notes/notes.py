@@ -148,6 +148,16 @@ def registeruser():
 def about():
     return render_template("about.html")
 
+@app.route("/readme")
+def readme():
+    # Ouverture fichier readme.me
+    lefichier= open("readme.md")
+    contentmd = lefichier.read()
+    lefichier.close()
+    content=markdown.markdown(contentmd)
+
+    return render_template("readme.html", texte=content)
+
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
@@ -190,12 +200,12 @@ def post(post_id,createur):
     rows=[]
     for ligne in post:
         ligne = dict(ligne)
-        print(ligne['corps'])
+        # print(ligne['corps'])
         ligne['corps'] = markdown.markdown(ligne['corps'])
         rows.append(ligne)
 
-    print(rows)
-    print(rows[0]['corps'])
+    # print(rows)
+    # print(rows[0]['corps'])
 
     # post['corps']= markdown.markdown(post['corps'])
     return render_template('unenote.html', post=rows[0], auteur=createur)

@@ -16,8 +16,16 @@
    <div id="navbarBasicExample" class="navbar-menu">
      <div class="navbar-start">
        <a class="navbar-item" href="{{ url_for('homepage')}}">Accueil</a>
+       <div class="navbar-item has-dropdown is-hoverable">
+
+         <a class="navbar-link">
+            Notes
+         </a>
+      {% if session['logged_in'] %}
+       <div class="navbar-dropdown">
        <a class="navbar-item" href="{{url_for('notes')}}">Lister</a>
        <a class="navbar-item" href="{{url_for('addnotes')}}">Ajouter</a>
+
     <div class="navbar-item has-dropdown is-hoverable">
       <a class="navbar-link">
          Recherche
@@ -28,6 +36,27 @@
         <a class="navbar-item" href="{{url_for('cheruser')}}">par Créateur </a>
       </div>
     </div>
+  </div>
+  {% else %}
+  <div class="navbar-dropdown">
+  <a class="navbar-item" href="#">Lister</a>
+  <a class="navbar-item" href="#">Ajouter</a>
+
+<div class="navbar-item has-dropdown is-hoverable ">
+ <a class="navbar-link">
+    Recherche
+ </a>
+
+ <div class="navbar-dropdown">
+   <a class="navbar-item" href="#">par Titre</a>
+   <a class="navbar-item" href="#">par Créateur </a>
+ </div>
+</div>
+</div>
+
+{% endif%}
+
+</div>
 
 
        <div class="navbar-item has-dropdown is-hoverable">
@@ -42,16 +71,25 @@
            <a class="navbar-item is-active" href="{{url_for('logout')}}"">De-connection</a>
            <a class="navbar-item" href="#">Enregistrement</a>
 
-       {% else %}
+{% else %}
           <a class="navbar-item is-active" href="{{url_for('clear')}}"">Connection</a>
           <a class="navbar-item " href="#">De-connection</a>
           <a class="navbar-item is-active" href="{{url_for('register')}}"">Enregistrement</a>
-       {% endif%}
+ {% endif%}
 
         </div>
 
       </div>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+           Doc
+        </a>
+        <div class="navbar-dropdown">
        <a class="navbar-item" href="{{url_for('about')}}">Au sujet</a>
+       <a class="navbar-item" href="{{url_for('readme')}}">Readme</a>
+    </div>
+    </div>
      </div>
    </div>
 

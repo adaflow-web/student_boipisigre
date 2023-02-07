@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+  <h1 class='title'>{% block title %} readme {% endblock %} de l'application notes.</h1>
+  <hr>
+<br/>
+
+
+{{texte  | safe }}
+
+
+<hr>
+</body>
+{% include 'footer.html' %}
+{% endblock %}

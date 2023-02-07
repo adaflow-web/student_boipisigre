@@ -1,4 +1,4 @@
-## lien sur le descriptif de l'application
+## Descriptif de l'application
 [analyse]( https://pad.monuage.ch/code/#/2/code/view/BHfzGxFgaLHxSguU+wKWPg-+oiqmXfVb7206CQA+KN0/)
 
 
@@ -9,13 +9,14 @@
 
 ## Ouverture d'une branch sqlite.
 
-je vais basculer la gestion des notes d'un fichiers texte vers une base sqlite
+Bascule de la gestion des notes d'un fichiers texte vers une base sqlite
 
 la structure de la table est :
   titre char(50),
   corps text
 
 Conséquence les fonction d'accédant aux données doivent être modifié:
+
 * add_notes(texte) **la première version doit être modifié** pour prendre deux parametre au lieu de un
 * get_notes()  
 
@@ -23,7 +24,7 @@ Conséquence les fonction d'accédant aux données doivent être modifié:
   * champs=note.split("€") --> champs=note[0].split("€")
   * champs=unenote.split("€") --> champs=unenote[0].split("€")
 
-## Ouverture d'une branch jinja.
+## Ouverture d'une branche jinja.
 
 Cette branch a été créé à partir de  la branch main :-(
 
@@ -37,9 +38,9 @@ Il y a des conflits à gérer manuellement.
 Pour intégrer Bulma
 
 ## creation de la version V1
-finaliser
+finaliser L'ntégration avec sqlite et jinja2
 
-## creation de la version Developpement V2
+## creation de la version V2
 
 pour filtrage sur le NomUtilisateur
 
@@ -48,3 +49,4 @@ Ajouter du hash du mot de passe
 
 ## version 5
 Ajout menu dropdown ;-)
+Ajout du suivi sur la page de l'application
