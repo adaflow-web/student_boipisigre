@@ -47,6 +47,10 @@ pour filtrage sur le NomUtilisateur
 ## creation Version 4
 Ajouter du hash du mot de passe
 
-## version 5
+## creation version 5
 Ajout menu dropdown ;-)
+
 Ajout du suivi sur la page de l'application
+
+## creation version 6
+Création de classe pour les utilisateurs et les notes
