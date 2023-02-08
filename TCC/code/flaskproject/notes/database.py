@@ -1,0 +1,104 @@
+
+import sqlite3
+# from werkzeug.datastructures import ImmutableMultiDict
+
+
+def get_db_connection():
+    conn = sqlite3.connect('static/db/lesnotes.db')
+    conn.row_factory = sqlite3.Row
+    return conn
+
+def get_notes(filtre):
+    DBCon = get_db_connection()
+
+    # print("=================================")
+    # Ouvrir un curseur
+    ltable = DBCon.cursor()
+    # print(filtre)
+    if filtre == "*":
+        notes = ltable.execute("select * from notes").fetchall()
+    else:
+        filtre="%"+filtre.upper()+"%"
+        # print(filtre)
+        notes = ltable.execute("select * from notes where upper(titre) like ?",[filtre,]).fetchall()# print(notes)
+        # print(notes)
+
+    ltable.close()
+    DBCon.close()
+    # print("=================================")
+    return  notes
+
+def get_notes_user(filtre):
+    DBCon = get_db_connection()
+
+    # print("=================================")
+    # Ouvrir un curseur
+    ltable = DBCon.cursor()
+    # print(filtre)
+    if filtre == "*":
+        notes = ltable.execute("select * from notes").fetchall()
+    else:
+        filtre=filtre.upper()+"%"
+        # print(filtre)
+        notes = ltable.execute("select * from notes where upper(nomcreateur) like ?",[filtre,]).fetchall()# print(notes)
+        # print(notes)
+
+    ltable.close()
+    DBCon.close()
+    # print("=================================")
+    return  notes
+
+
+def add_notes(col1,col2,col3):
+    DBCon = get_db_connection()
+    # print("=================================")
+    # Ouvrir un curseur
+    updtable = DBCon.cursor()
+    data = [col1,col2,col3]
+    updtable.execute("insert into notes (titre,corps,creation,modif,nomcreateur) values (?, ?, date(), date(),?)", data)
+    DBCon.commit()
+    updtable.close()
+    DBCon.close()
+    return
+
+def add_user(nom,mdp):
+    DBCon = get_db_connection()
+    # print("=================================")
+    hashpwd=generate_password_hash(mdp)
+    updtable = DBCon.cursor()
+    data = [nom,hashpwd]
+    updtable.execute("insert into utilisateur (nom,modif, hashpwd) values (?, date(),?)", data)
+    DBCon.commit()
+    updtable.close()
+    DBCon.close()
+    return
+
+def get_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM notes WHERE id = ?',
+                        (post_id,)).fetchall()
+    conn.close()
+    # print(post)
+    if post is None:
+        abort(404)
+    return post
+
+def get_user(nom):
+    conn = get_db_connection()
+    mdp = conn.execute('SELECT hashpwd FROM utilisateur WHERE nom = ?',(nom,)).fetchone()
+    conn.close()
+    return mdp
+
+def update_note(titolo, enhavo, id):
+    conn = get_db_connection()
+    conn.execute('UPDATE notes SET titre = ?, corps = ?, modif=date()'
+                 ' WHERE id = ?', (titolo, enhavo, id))
+    conn.commit()
+    conn.close()
+
+
+def delete_note(id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM notes WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()

@@ -53,4 +53,5 @@ Ajout menu dropdown ;-)
 Ajout du suivi sur la page de l'application
 
 ## creation version 6
-Création de classe pour les utilisateurs et les notes
+
+Création d'un module database pour sortir le code de l'application principale
