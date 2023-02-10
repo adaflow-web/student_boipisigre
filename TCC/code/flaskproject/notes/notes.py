@@ -50,7 +50,8 @@ def registeruser():
 
     nom=request.args.get("username")
     pwd=request.args.get("password")
-    add_user(nom, pwd)
+    hashpwd=generate_password_hash(pwd)
+    add_user(nom, hashpwd)
     session['logged_in'] = False
     return homepage()
 

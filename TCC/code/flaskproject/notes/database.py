@@ -64,9 +64,9 @@ def add_notes(col1,col2,col3):
 def add_user(nom,mdp):
     DBCon = get_db_connection()
     # print("=================================")
-    hashpwd=generate_password_hash(mdp)
+
     updtable = DBCon.cursor()
-    data = [nom,hashpwd]
+    data = [nom,mdp]
     updtable.execute("insert into utilisateur (nom,modif, hashpwd) values (?, date(),?)", data)
     DBCon.commit()
     updtable.close()
