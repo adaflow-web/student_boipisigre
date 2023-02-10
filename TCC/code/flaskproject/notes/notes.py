@@ -103,6 +103,7 @@ def ajoutnote():
             add_notes(txt_titre,txt_corps,txt_createur)
             message = " notes "+ txt_titre + " ajoutée "
             flash(message)
+            sleep(1)
     return redirect(url_for('notes'))
 
 @app.route('/<int:post_id>/<string:createur>')
