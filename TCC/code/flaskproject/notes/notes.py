@@ -102,8 +102,8 @@ def ajoutnote():
             # note = txt_titre + " € " + txt_corps + "\n"
             add_notes(txt_titre,txt_corps,txt_createur)
             message = " notes "+ txt_titre + " ajoutée "
+            time.sleep(1)
             flash(message)
-            time.sleep(0.5)
     return redirect(url_for('homepage'))
 
 @app.route('/<int:post_id>/<string:createur>')
@@ -168,6 +168,7 @@ def redakti(id):
             flash('Un titre est obligatoire!')
         else:
             update_note(titolo, enhavo, id)
+            time.sleep(1)
             return redirect(url_for('homepage'))
 
     return render_template('editer.html', post=post[0])
@@ -176,6 +177,7 @@ def redakti(id):
 def delete(id):
     post = get_post(id)
     delete_note(id)
+    time.sleep(1)
     flash('"{}" was successfully deleted!'.format(post[0]['titre']))
-    time.sleep(0.5)
+
     return redirect(url_for('homepage'))
