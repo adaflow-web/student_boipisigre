@@ -3,7 +3,7 @@ import markdown
 from flask import Flask, render_template, request, url_for, flash, redirect, session
 from werkzeug.exceptions import abort
 from werkzeug.security import generate_password_hash, check_password_hash
-
+import time
 from database import *
 # from werkzeug.datastructures import ImmutableMultiDict
 
@@ -103,7 +103,7 @@ def ajoutnote():
             add_notes(txt_titre,txt_corps,txt_createur)
             message = " notes "+ txt_titre + " ajoutée "
             flash(message)
-            sleep(1)
+            time.sleep(0.5)
     return redirect(url_for('notes'))
 
 @app.route('/<int:post_id>/<string:createur>')
@@ -177,4 +177,5 @@ def delete(id):
     post = get_post(id)
     delete_note(id)
     flash('"{}" was successfully deleted!'.format(post[0]['titre']))
+    time.sleep(0.5)
     return redirect(url_for('notes'))
