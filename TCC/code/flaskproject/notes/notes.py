@@ -179,4 +179,4 @@ def delete(id):
     delete_note(id)
     flash('"{}" was successfully deleted!'.format(post[0]['titre']))
 
-    return redirect(url_for('notes'))
+    return redirect(url_for('notes',_scheme="https"))
