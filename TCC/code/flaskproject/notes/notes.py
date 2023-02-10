@@ -178,6 +178,6 @@ def delete(id):
     post = get_post(id)
     delete_note(id)
     time.sleep(1)
-    flash('"{}" was successfully deleted!'.format(post[0]['titre']))
+    # flash('"{}" was successfully deleted!'.format(post[0]['titre']))
 
     return redirect(url_for('homepage'))
