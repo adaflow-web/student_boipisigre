@@ -104,7 +104,7 @@ def ajoutnote():
             message = " notes "+ txt_titre + " ajoutée "
             time.sleep(1)
             flash(message)
-    return redirect(url_for('homepage'))
+    return homepage()
 
 @app.route('/<int:post_id>/<string:createur>')
 def post(post_id,createur):
@@ -169,7 +169,7 @@ def redakti(id):
         else:
             update_note(titolo, enhavo, id)
             time.sleep(1)
-            return redirect(url_for('homepage'))
+            return homepage()
 
     return render_template('editer.html', post=post[0])
 
@@ -179,4 +179,4 @@ def delete(id):
     delete_note(id)
     flash('"{}" was successfully deleted!'.format(post[0]['titre']))
 
-    return redirect(url_for('notes',_scheme="https"))
+    return notes()
