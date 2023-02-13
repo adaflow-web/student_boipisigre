@@ -101,10 +101,10 @@ def ajoutnote():
             txt_corps = txt_corps.replace("\n"," ")
             # note = txt_titre + " € " + txt_corps + "\n"
             add_notes(txt_titre,txt_corps,txt_createur)
-            message = " notes "+ txt_titre + " ajoutée "
+            message = " La note "+ txt_titre + "est ajoutée "
             time.sleep(1)
             flash(message)
-    return homepage()
+    return notes()
 
 @app.route('/<int:post_id>/<string:createur>')
 def post(post_id,createur):
@@ -168,8 +168,8 @@ def redakti(id):
             flash('Un titre est obligatoire!')
         else:
             update_note(titolo, enhavo, id)
-            time.sleep(1)
-            return homepage()
+            # time.sleep(1)
+            return notes()
 
     return render_template('editer.html', post=post[0])
 
@@ -177,6 +177,6 @@ def redakti(id):
 def delete(id):
     post = get_post(id)
     delete_note(id)
-    flash('"{}" was successfully deleted!'.format(post[0]['titre']))
+    flash('La note "{}" a été supprimée!'.format(post[0]['titre']))
 
     return notes()
