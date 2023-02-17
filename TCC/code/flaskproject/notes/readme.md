@@ -7,7 +7,7 @@
 * Creation d'une branche sqlite pour migrer de fichier txt vers db ssqlite
 * creation d'une branche jinja pour améliorer le html et utiliser les templates surt la base de la gestion en fichier...
 
-## Ouverture d'une branch sqlite.
+## Ouverture d'une branche sqlite.
 
 Bascule de la gestion des notes d'un fichiers texte vers une base sqlite
 
@@ -55,3 +55,5 @@ Ajout du suivi sur la page de l'application
 ## creation version 6
 
 Création d'un module database pour sortir le code de l'application principale
+
+Dans cette version il faut que la DB **sqlite** soit présente. 
