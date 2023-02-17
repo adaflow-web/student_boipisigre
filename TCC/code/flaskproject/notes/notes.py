@@ -69,6 +69,16 @@ def readme():
 
     return render_template("readme.html", texte=content)
 
+@app.route("/Flask")
+def flask():
+    # Ouverture fichier readme.me
+    lefichier= open("flask.md")
+    contentmd = lefichier.read()
+    lefichier.close()
+    content=markdown.markdown(contentmd)
+
+    return render_template("flask.html", texte=content)
+
 @app.route("/notes")
 def notes():
     lesnotes=get_notes("*")
