@@ -7,7 +7,7 @@ import time
 from database import *
 # from werkzeug.datastructures import ImmutableMultiDict
 
-app = Flask("notes")
+app = Flask(__name__)
 SESSION_TYPE = 'redis'
 app.config.from_object('notes')
 app.config.update(SECRET_KEY='osd(99092=36&462134kjKDhuIS_d23')
@@ -190,3 +190,6 @@ def delete(id):
     flash('La note "{}" a été supprimée!'.format(post[0]['titre']))
 
     return notes()
+
+if __name__ == "__main__":
+    app.run()

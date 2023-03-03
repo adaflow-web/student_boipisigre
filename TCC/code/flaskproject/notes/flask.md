@@ -93,8 +93,8 @@ La mise à jour se fait par le lancement d'un script sur la machine distante.
 Le script refresh.bash va chercher sur le repository distant les mises à jour, puis relance le service flask du serveur.
 
 >
-#!/usr/bin/bash
-#
+\#!/usr/bin/bash
+\#
 cd /home/pboizot/app/microblog
 
 git  pull
@@ -102,3 +102,34 @@ echo $?
 sudo systemctl restart flask.service
 
 echo ' Mise a jour OK'
+
+
+## Basculement vers gunicorn
+### installation
+>pipenv install gunicorn
+
+### code
+Il est nécessaire de modifier le code .
+
+>> app = Flask("notes")
+-->
+app = Flask(__name__)
+
+
+if __name__ == "__main__":
+    app.run()
+
+
+### Modification du service flask
+Unit]
+Description=Gestion de Notes Flask & gunicorn
+After=network.target
+
+[Service]
+User=pboizot
+WorkingDirectory=/home/pboizot/app/microblog
+ExecStart=gunicorn -w 3 --bind 127.0.0.1:5000 wsgi:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
