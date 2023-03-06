@@ -7,6 +7,9 @@ name = "pypi"
 flask = "*"
 flask-session = "*"
 markdown = "*"
+flask-debugtoolbar = "*"
+flask-mail = "*"
+gunicorn = "*"
 
 [dev-packages]
 
