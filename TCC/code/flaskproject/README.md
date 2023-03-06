@@ -19,6 +19,7 @@ ensuite installer par la commande
 > pipenv shell   
 pipenv install Flask
 
+Un fichier requirements.txt a été ajouté pour facilité l'installation des modules.
 
 on crera un répertoire par application avec les sous - rpertoires
    * static : pour les fichiers css, js, images
